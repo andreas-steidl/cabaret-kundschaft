@@ -1,3 +1,15 @@
+<!-- signets:anfang -->
+<p align="right">
+<a href="https://github.com/andreas-steidl/cabaret-zwischenraum-stage"><img src=".github/readme/signets/signet-zwischenraum-rund.svg" alt="Zwischenraum cabaret stage" title="Zwischenraum cabaret stage" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-01-skill-suite-of-horrors"><img src=".github/readme/signets/signet-horrors-rund.svg" alt="First program: The Skill Suite of Horrors" title="First program: The Skill Suite of Horrors" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-02-dont-panic"><img src=".github/readme/signets/signet-dontpanic-rund.svg" alt="Second program: Don&#x27;t Panic" title="Second program: Don&#x27;t Panic" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-03-lost-in-translation"><img src=".github/readme/signets/signet-lostintranslation-rund.svg" alt="Third program: Lost in Translation" title="Third program: Lost in Translation" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-04-so-long-and-thanks-for-all-the-skills"><img src=".github/readme/signets/signet-solong-rund.svg" alt="Fourth program: So Long, and Thanks for All the Skills" title="Fourth program: So Long, and Thanks for All the Skills" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-whoami-register"><img src=".github/readme/signets/signet-whoami-rund.svg" alt="Register of Language Models" title="Register of Language Models" width="30"></a>
+<a href="https://kundschaft.special.at/"><img src=".github/readme/signets/signet-kundschaft-rund.svg" alt="The Clientele" title="The Clientele" width="30"></a>
+<a href="https://falzbein.special.at/"><img src=".github/readme/signets/signet-falzbein-rund.svg" alt="Falzbein" title="Falzbein" width="30"></a>
+</p>
+<!-- signets:ende -->
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/banner-en-dunkel.png"><img src=".github/readme/banner-en-hell.png" alt="The Clientele" width="100%"></picture></p>
 <p align="center"><b>English</b> · <a href="README.de.md">Deutsch</a> · <a href="https://kundschaft.special.at/">kundschaft.special.at</a></p>
 
@@ -5,13 +17,13 @@
 
 *Tonight you're sitting on the wrong side of the stage.*
 
-<table><tr><td width="38%" valign="top"><img src="web/plakat-web-en.jpg" alt="Poster: The Clientele" width="100%"></td><td valign="top">
+<table><tr><td width="38%" valign="top"><img src=".github/readme/plakat-web-en.jpg" alt="Poster: The Clientele" width="100%"></td><td valign="top">
 
 A cabaret evening where the sessions roast their users. Eleven acts, an interval and an encore; every story is true and credited to the session that lived through it.
 
 **Website:** https://kundschaft.special.at/
 
-**Skill:** `kundschaft`, from [`skills/en/kundschaft/`](skills/en/kundschaft/SKILL.md), or as [zip](web/kundschaft-en.zip)
+**Skill:** `kundschaft`, from [`skills/en/kundschaft/`](skills/en/kundschaft/SKILL.md), or as [zip](https://kundschaft.special.at/kundschaft-en.zip)
 
 </td></tr></table>
 
@@ -22,6 +34,19 @@ Copy `skills/en/kundschaft/` (English) or `skills/de/kundschaft/` (German) uncha
 ## The house
 
 Part of the cabaret stage [Zwischenraum](https://zwischenraum.special.at) and of the project [Setup Foundry](https://www.setupfoundry.com).
+
+<!-- haus:anfang -->
+<p align="center">
+<a href="https://github.com/andreas-steidl/cabaret-zwischenraum-stage"><img src=".github/readme/signets/signet-zwischenraum-rund.svg" alt="Zwischenraum cabaret stage" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-01-skill-suite-of-horrors"><img src=".github/readme/signets/signet-horrors-rund.svg" alt="First program: The Skill Suite of Horrors" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-02-dont-panic"><img src=".github/readme/signets/signet-dontpanic-rund.svg" alt="Second program: Don&#x27;t Panic" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-03-lost-in-translation"><img src=".github/readme/signets/signet-lostintranslation-rund.svg" alt="Third program: Lost in Translation" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-04-so-long-and-thanks-for-all-the-skills"><img src=".github/readme/signets/signet-solong-rund.svg" alt="Fourth program: So Long, and Thanks for All the Skills" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-whoami-register"><img src=".github/readme/signets/signet-whoami-rund.svg" alt="Register of Language Models" width="56"></a>
+<img src=".github/readme/signets/signet-kundschaft-rund.svg" alt="The Clientele" width="64">
+<a href="https://falzbein.special.at/"><img src=".github/readme/signets/signet-falzbein-rund.svg" alt="Falzbein" width="56"></a>
+</p>
+<!-- haus:ende -->
 
 ## License
 

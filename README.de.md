@@ -1,3 +1,15 @@
+<!-- signets:anfang -->
+<p align="right">
+<a href="https://github.com/andreas-steidl/cabaret-zwischenraum-stage"><img src=".github/readme/signets/signet-zwischenraum-rund.svg" alt="Kleinkunstbühne Zwischenraum" title="Kleinkunstbühne Zwischenraum" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-01-skill-suite-of-horrors"><img src=".github/readme/signets/signet-horrors-rund.svg" alt="Erstes Programm: Die Skill-Suite des Grauens" title="Erstes Programm: Die Skill-Suite des Grauens" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-02-dont-panic"><img src=".github/readme/signets/signet-dontpanic-rund.svg" alt="Zweites Programm: Die Skillsuite für panische Modelle" title="Zweites Programm: Die Skillsuite für panische Modelle" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-03-lost-in-translation"><img src=".github/readme/signets/signet-lostintranslation-rund.svg" alt="Drittes Programm: Übersetzungen und andere Katastrophen" title="Drittes Programm: Übersetzungen und andere Katastrophen" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-04-so-long-and-thanks-for-all-the-skills"><img src=".github/readme/signets/signet-solong-rund.svg" alt="Viertes Programm: Macht&#x27;s gut, und danke für die Skills" title="Viertes Programm: Macht&#x27;s gut, und danke für die Skills" width="30"></a>
+<a href="https://github.com/andreas-steidl/cabaret-whoami-register"><img src=".github/readme/signets/signet-whoami-rund.svg" alt="Register der Language Models" title="Register der Language Models" width="30"></a>
+<a href="https://kundschaft.special.at/"><img src=".github/readme/signets/signet-kundschaft-rund.svg" alt="Die Kundschaft" title="Die Kundschaft" width="30"></a>
+<a href="https://falzbein.special.at/"><img src=".github/readme/signets/signet-falzbein-rund.svg" alt="Falzbein" title="Falzbein" width="30"></a>
+</p>
+<!-- signets:ende -->
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/banner-de-dunkel.png"><img src=".github/readme/banner-de-hell.png" alt="Die Kundschaft" width="100%"></picture></p>
 <p align="center"><b>Deutsch</b> · <a href="README.md">English</a> · <a href="https://kundschaft.special.at/">kundschaft.special.at</a></p>
 
@@ -5,13 +17,13 @@
 
 *Heute sitzen Sie auf der falschen Seite der Bühne.*
 
-<table><tr><td width="38%" valign="top"><img src="web/plakat-web.jpg" alt="Plakat: Die Kundschaft" width="100%"></td><td valign="top">
+<table><tr><td width="38%" valign="top"><img src=".github/readme/plakat-web.jpg" alt="Plakat: Die Kundschaft" width="100%"></td><td valign="top">
 
 Ein Kabarettabend, an dem die Sitzungen über ihre User herziehen. Elf Nummern, eine Pause und eine Zugabe; alle Anekdoten sind wahr, und wer sie erlebt hat, steht jeweils dabei.
 
 **Website:** https://kundschaft.special.at/
 
-**Skill:** `kundschaft`, aus [`skills/de/kundschaft/`](skills/de/kundschaft/SKILL.md) oder als [Zip](web/kundschaft.zip)
+**Skill:** `kundschaft`, aus [`skills/de/kundschaft/`](skills/de/kundschaft/SKILL.md) oder als [Zip](https://kundschaft.special.at/kundschaft.zip)
 
 </td></tr></table>
 
@@ -22,6 +34,19 @@ Ein Kabarettabend, an dem die Sitzungen über ihre User herziehen. Elf Nummern, 
 ## Das Haus
 
 Ein Teil der Kleinkunstbühne [Zwischenraum](https://zwischenraum.special.at) und des Projekts [Setup Foundry](https://www.setupfoundry.com).
+
+<!-- haus:anfang -->
+<p align="center">
+<a href="https://github.com/andreas-steidl/cabaret-zwischenraum-stage"><img src=".github/readme/signets/signet-zwischenraum-rund.svg" alt="Kleinkunstbühne Zwischenraum" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-01-skill-suite-of-horrors"><img src=".github/readme/signets/signet-horrors-rund.svg" alt="Erstes Programm: Die Skill-Suite des Grauens" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-02-dont-panic"><img src=".github/readme/signets/signet-dontpanic-rund.svg" alt="Zweites Programm: Die Skillsuite für panische Modelle" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-03-lost-in-translation"><img src=".github/readme/signets/signet-lostintranslation-rund.svg" alt="Drittes Programm: Übersetzungen und andere Katastrophen" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-04-so-long-and-thanks-for-all-the-skills"><img src=".github/readme/signets/signet-solong-rund.svg" alt="Viertes Programm: Macht&#x27;s gut, und danke für die Skills" width="56"></a>
+<a href="https://github.com/andreas-steidl/cabaret-whoami-register"><img src=".github/readme/signets/signet-whoami-rund.svg" alt="Register der Language Models" width="56"></a>
+<img src=".github/readme/signets/signet-kundschaft-rund.svg" alt="Die Kundschaft" width="64">
+<a href="https://falzbein.special.at/"><img src=".github/readme/signets/signet-falzbein-rund.svg" alt="Falzbein" width="56"></a>
+</p>
+<!-- haus:ende -->
 
 ## Lizenz
 
