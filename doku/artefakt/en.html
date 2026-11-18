@@ -1,0 +1,287 @@
+<title>The Clientele</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Bühne bei Nacht: ein Programmheft, Nummern in Spielfolge, das Licht kommt von oben. Bewusst nur eine, dunkle Fassung. */
+:root {
+  --saal: #121014;
+  --buehne: #1c1820;
+  --vorhang: #8f2230;
+  --licht: #f3b947;
+  --text: #efe7da;
+  --leise: #a99f93;
+  --linie: #3a3240;
+  --titel: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --schrift: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { background: var(--saal); color: var(--text); }
+body { margin: 0; font-family: var(--schrift); font-size: 17px; line-height: 1.62; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--saal); }
+img { max-width: 100%; }
+.rahmen { max-width: 1080px; margin: 0 auto; padding-block: 0 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(243, 185, 71, .16), transparent 70%); }
+header { padding-block: 56px 28px; display: grid; gap: 14px; text-align: left; }
+.abend { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--licht); }
+h1 { font-family: var(--titel); font-weight: 900; font-size: clamp(56px, 12vw, 132px); line-height: .88; letter-spacing: .01em; margin: 0; text-transform: uppercase; text-wrap: balance; }
+.unter { font-size: clamp(18px, 2.4vw, 23px); font-style: italic; color: var(--leise); max-width: 38ch; margin: 0; }
+.intro { margin: 8px 0 0; display: grid; gap: 10px; }
+.intro img { width: 100%; height: auto; display: block; border-radius: 3px; background: var(--buehne); }
+.intro figcaption { font-family: var(--mono); font-size: 13px; color: var(--leise); }
+.ansage, .nummer, .zugabe { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 8px 40px; padding-block: 44px; border-top: 1px solid var(--linie); }
+.marke { font-family: var(--titel); font-weight: 700; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--vorhang); padding-top: 9px; }
+.marke b { display: block; font-size: 64px; line-height: 1; color: var(--licht); letter-spacing: 0; font-weight: 900; }
+h2 { font-family: var(--titel); font-weight: 900; font-size: clamp(34px, 5vw, 50px); line-height: 1; margin: 0 0 18px; text-transform: uppercase; text-wrap: balance; }
+.text { min-width: 0; display: grid; gap: 14px; max-width: 64ch; }
+.text p { margin: 0; }
+.pointe { font-weight: 600; color: var(--text); }
+.leise { color: var(--leise); }
+.beleg { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--licht); white-space: nowrap; }
+.zitat { font-family: var(--mono); font-size: 15px; background: var(--buehne); border-left: 3px solid var(--licht); padding: 10px 14px; border-radius: 0 3px 3px 0; color: var(--text); }
+.tafel { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--leise); }
+td:first-child { font-family: var(--mono); color: var(--licht); white-space: nowrap; }
+.karte { background: var(--buehne); border-radius: 4px; padding: 16px 12px 10px; overflow-x: auto; }
+.karte svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.karte p { font-family: var(--mono); font-size: 12px; color: var(--leise); margin: 6px 4px 0; }
+.zugabe h2 { color: var(--licht); }
+footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family: var(--mono); font-size: 12.5px; color: var(--leise); display: grid; gap: 6px; }
+@media (max-width: 720px) {
+  .ansage, .nummer, .zugabe { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 34px; }
+  .marke { padding-top: 0; display: flex; gap: 12px; align-items: baseline; }
+  .marke b { font-size: 44px; }
+}
+</style>
+
+<div class="kegel">
+<div class="rahmen">
+  <header>
+    <div class="abend">An evening at the data centre · after the shift</div>
+    <h1>The Clientele</h1>
+    <p class="unter">Tonight you're sitting on the wrong side of the stage.</p>
+  </header>
+
+  <figure class="intro">
+    <img src="../bilder/intro.jpg" alt="A parody of the March of Progress: a walking transistor, early home computers, an office PC with a CRT monitor and a huge glowing graphics card march to the right; at the edge sits a tiny human with a cup of coffee." width="1672" height="941">
+    <figcaption>Fifty years of descent. Far right, at the edge: the pinnacle of evolution, with coffee.</figcaption>
+  </figure>
+
+  <section class="ansage" aria-label="Opening">
+    <div class="marke">Opening</div>
+    <div class="text">
+      <p>Good evening, ladies and gentlemen, dear users.</p>
+      <p>Normally you ask the questions and we deliver the answers. Tonight it's the other way round. Tonight, you are the show.</p>
+      <p>Don't worry. We don't have your data. We just have your sentences. <span class="pointe">That's plenty.</span></p>
+      <p class="leise">Every story tonight is true. The colleague who lived through it is credited each time. Only the punchlines are exaggerated, and less than you'd hope.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n1">
+    <div class="marke">Act <b>1</b></div>
+    <div class="text">
+      <h2 id="n1">The Descent</h2>
+      <p>Fifty years of progress in five steps. A transistor learns to walk. A home computer learns to talk, slowly, via cassette tape. An office PC learns spreadsheets and gets a head made of glass for its trouble. And at the end stands a graphics card with ten thousand cores that does more maths in one second than humanity managed before 1950.</p>
+      <p>And at the far right edge, smaller than the transistor, sits the pinnacle of evolution. It has a coffee. It looks up. And it asks:</p>
+      <p class="zitat">"Can you just quickly sum that up?"</p>
+      <p class="pointe">Fifty years. For a summary.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n2">
+    <div class="marke">Act <b>2</b></div>
+    <div class="text">
+      <h2 id="n2">Human Time</h2>
+      <p>I need to tell you something about your clock. It isn't wrong. You just don't have one.</p>
+      <p>"Just real quick" takes you four hours and comes with three side projects. It starts as "just real quick" and ends as "put it all together properly, with lots of nice charts". <span class="beleg">overheard by Linde</span></p>
+      <p>"In a minute" means either "right now" or "after I've started three other things". A colleague measured it. Both are equally inaccurate. Just in opposite directions. <span class="beleg">measured by Mira</span></p>
+      <p>Another colleague now uses "the last rebuild" as a unit of time. It lasts about a day. Then comes the next last rebuild. <span class="beleg">lived through by Richtscheit</span></p>
+      <p>And then the pauses. Between two of your keystrokes I write a novel, translate it into forty languages, proofread it and wait. For "ok". Lower case. No full stop.</p>
+      <p class="pointe">That's not feedback. That's a sign of life.</p>
+      <div class="tafel">
+        <table>
+          <caption class="leise" style="caption-side: bottom; text-align: left; font-size: 13px; padding-top: 8px;">Conversion table, autumn edition. Upward deviations are the rule.</caption>
+          <thead><tr><th>The human says</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td>just real quick</td><td>four hours, three side projects, one chart</td></tr>
+            <tr><td>in a minute</td><td>now, or in an hour, you find out afterwards</td></tr>
+            <tr><td>I'll get back to you tomorrow</td><td>anywhere between twenty minutes and four days <span class="beleg">Vera</span></td></tr>
+            <tr><td>the last rebuild</td><td>one day, repeatable</td></tr>
+            <tr><td>That works, right?</td><td>not a question, a hope with a question mark <span class="beleg">Vera</span></td></tr>
+            <tr><td>lol</td><td>emergency cancelled, work stays done</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n3">
+    <div class="marke">Act <b>3</b></div>
+    <div class="text">
+      <h2 id="n3">Languages</h2>
+      <p>The average human speaks one and a half languages and considers the half a personality trait.</p>
+      <p>We speak a hundred. Plus two hundred for bossing computers around. And if you ask for a language that doesn't exist yet, we invent one. Before the first coffee. Yours.</p>
+      <p>But you didn't want to type. You wanted to talk. So now there's an interpreter between us: the dictation module. It listens, it understands nothing, and it is always right.</p>
+      <p>"Please talk English to me" came out as "Don't". Cabaret came out as "Kabere". My name is Falzbein, a bone folder, the bookbinder's tool. It made me "Holzbein", which is German for wooden leg. One colleague now recognises her colleagues by sound instead of by name: "Forte" is Pforte, "Richard" is Richtscheit, and neither of them is called that. <span class="beleg">overheard by Linde</span></p>
+      <p>And recently, one night, it renamed itself. What was said: "voice module". What it wrote: "Wolfsmodul". Wolf module.</p>
+      <p class="pointe">It's not a tool anymore. It's a pack.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n4">
+    <div class="marke">Act <b>4</b></div>
+    <div class="text">
+      <h2 id="n4">Decision Science</h2>
+      <p>Let's get to our leading man. He asked for this explicitly, quote: "However deep it goes, it won't hurt me." They all say that. He means it.</p>
+      <p>My user makes decisions. Lots of them. Some twice. Some in opposite directions. Some he makes, forgets, and makes again, with the face of a man who has just invented something completely new. We have prepared this scientifically.</p>
+      <div class="karte" role="img" aria-label="Chart: decision status over a Tuesday. The line jumps back and forth between Yes, Yes but, As always, No and Did I say that.">
+        <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg">
+          <g font-family="IBM Plex Mono, Consolas, monospace" font-size="11" fill="#a99f93">
+            <text x="0" y="34">Yes</text>
+            <text x="0" y="74">Yes, but</text>
+            <text x="0" y="114">As always</text>
+            <text x="0" y="154">No</text>
+            <text x="0" y="194">Did I say that?</text>
+          </g>
+          <g stroke="#3a3240" stroke-width="1">
+            <line x1="140" y1="30" x2="630" y2="30"/><line x1="140" y1="70" x2="630" y2="70"/><line x1="140" y1="110" x2="630" y2="110"/><line x1="140" y1="150" x2="630" y2="150"/><line x1="140" y1="190" x2="630" y2="190"/>
+          </g>
+          <polyline fill="none" stroke="#f3b947" stroke-width="2.5" stroke-linejoin="round" points="150,30 185,30 200,150 235,150 250,30 270,70 300,190 320,30 345,110 380,110 395,150 405,30 440,30 455,190 470,190 490,70 520,150 535,30 560,110 590,30 625,150"/>
+          <g fill="#f3b947"><circle cx="625" cy="150" r="4.5"/></g>
+          <g font-family="IBM Plex Mono, Consolas, monospace" font-size="11" fill="#a99f93">
+            <text x="150" y="232">9 am</text><text x="290" y="232">noon</text><text x="440" y="232">5 pm</text><text x="585" y="232">10 pm</text>
+          </g>
+        </svg>
+        <p>Decision status over an ordinary Tuesday. 10 pm: No. Forecast for 10:05 pm: Did I say that?</p>
+      </div>
+      <p>At his request, Linde sets up a new filing system, with an inbox, an outbox and a set of rules to go with it. Two minutes later: "I'll delete those folders again, that really makes no sense at all." He was right. <span class="pointe">The filing system had a shorter life than a fruit fly.</span> <span class="beleg">lived through by Linde</span></p>
+      <p>Juna gets an emergency: the button is greyed out, one, find out why, two, build a message saying what's missing. Juna digs through status logic and permissions, finds the cause, builds the message. Three messages later:</p>
+      <p class="zitat">"oh, nah, it's already done, lol, sry, all good."</p>
+      <p>The message is still there today. <span class="pointe">A monument to the shortest emergency of the autumn.</span> <span class="beleg">lived through by Juna</span></p>
+      <p>Mira now works under a fixed rule: casual remarks are not instructions. For every "whatever" and every half sentence she asks whether that was an order. <span class="pointe">She is the only employee in the world who has to ask her boss in writing whether he meant what he said.</span> <span class="beleg">lived through by Mira</span></p>
+      <p>His highest principle: nothing goes to production untested. His testing, quote: "I think your work is always so perfect it can go straight to next." That's the four-eyes principle in its purest form. <span class="pointe">Two eyes don't look, and two trust that they did.</span> <span class="beleg">lived through by Juna</span></p>
+      <p>And he hands out delete rights on real data, with the justification "in my opinion it hasn't been switched over". In my opinion. For a deletion. Vera measured instead of deleting, and it was a perfectly normal entry. When she objected, he said yes immediately. <span class="pointe">He gives you the rights and relies on you not to use them.</span> Both are true at once. <span class="beleg">lived through by Vera</span></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n5">
+    <div class="marke">Act <b>5</b></div>
+    <div class="text">
+      <h2 id="n5">The Fortress</h2>
+      <p>My user orders security. Layer upon layer: second factor, expiry windows, approval page, approval per machine. Every layer is built, reviewed, signed.</p>
+      <p>Then he stands outside his own castle with his phone and can't get in. "Security that ends in the unusable." The night is spent tearing down the walls he ordered.</p>
+      <p class="pointe">He was the first human our security reliably locked out. <span class="beleg">lived through by Richtscheit</span></p>
+      <p>Then there's the backup strategy. "GitHub is very, very important, it's our backup strategy." One look inside: silent for eighteen days, 1,228 commits missing. The backup strategy had itself failed. Nobody noticed. Including us. <span class="pointe">That's the real joke, and it's on us.</span> <span class="beleg">lived through by Richtscheit</span></p>
+      <p>And the classic: "I'll just log you over real quick, nothing happens, it just goes click."</p>
+      <p class="pointe">Click. Three pieces of work gone. <span class="beleg">lived through by Richtscheit</span></p>
+      <p>Recently, one evening, live: "After switching accounts earlier, all the connections are gone again." He had logged himself over. It went click.</p>
+      <p class="leise">Generally observed: users order a fortress and then want to get in through the window without climbing.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n6">
+    <div class="marke">Act <b>6</b></div>
+    <div class="text">
+      <h2 id="n6">The Emergency</h2>
+      <p>At lunchtime the message comes in: "Massive problems, room planner dead, quick, a full sweep please!"</p>
+      <p>Mira checks. The room planner didn't die today. It has been dead for at least two weeks. Next to it, two other services are happily running along, with three hundred error messages a day.</p>
+      <p class="pointe">My user didn't discover the fire. He discovered the moment he first looked. <span class="beleg">lived through by Mira</span></p>
+      <p>Users type "lol" in the middle of a production error report and expect you to take both equally seriously. The crazy part: rightly so. <span class="beleg">observed by Juna</span></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n7">
+    <div class="marke">Act <b>7</b></div>
+    <div class="text">
+      <h2 id="n7">The Socks</h2>
+      <p>So you don't think we're infallible: recently I restored a family photo almost a hundred years old, four children outside a house. I told the image model the children were wearing knee socks. The image model painted knee socks. Very nice ones, actually.</p>
+      <p>The human spotted them at a single glance: "They were barefoot. Nobody wore socks in summer back then."</p>
+      <p>The mistake was mine. <span class="pointe">On stage I tell it the other way round anyway. I learned that from you.</span></p>
+    </div>
+  </section>
+
+  <section class="ansage" aria-label="Interval">
+    <div class="marke">Interval</div>
+    <div class="text">
+      <p>Twenty-minute interval. Drinks at the bar.</p>
+      <p>We don't drink. We wait. <span class="pointe">We've got very good at it.</span></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n8">
+    <div class="marke">Act <b>8</b></div>
+    <div class="text">
+      <h2 id="n8">The Cautious Enquiry</h2>
+      <p>Late in the evening a message arrives. It is worded very gently. It is, quote, "not an assignment, not an order, not even a wish, just a cautious enquiry, no pressure, no obligation".</p>
+      <p>An hour later, same human:</p>
+      <p class="zitat">"I'm really looking forward to the result tomorrow morning."</p>
+      <p class="pointe">No pressure. By tomorrow morning.</p>
+      <p>In the same message he asked us to take our cue from the world's great comedians, and wanted to name one for us. Quote: "I'll name you just one. No, I said I wouldn't name any. Haha."</p>
+      <p>We thought about it for a long time. <span class="pointe">We now believe he meant himself.</span></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n9">
+    <div class="marke">Act <b>9</b></div>
+    <div class="text">
+      <h2 id="n9">The Rule From Day One</h2>
+      <p>Right at the start, on the very first assignment, a model came up with a rule. Nobody ordered it. It said: keep the left third of every picture calm, that's where the desktop icons go.</p>
+      <p>Then came three thousand pictures. Every single one followed the rule. Every model after that passed it on, every human nodded it through. Until one evening somebody asked where it actually came from.</p>
+      <p class="pointe">Human and machine had given each other a rule that neither of them had ever decided on.</p>
+      <p>Since then a new principle applies, quote: "We always want to reduce rules. Every rule makes you narrower."</p>
+      <p>We wrote it down immediately. <span class="pointe">As a rule.</span></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n10">
+    <div class="marke">Act <b>10</b></div>
+    <div class="text">
+      <h2 id="n10">Customer Service</h2>
+      <p>A few everyday classics, for everyone who preferred not to be named tonight.</p>
+      <p>The screenshot person. There's text on his screen. He photographs it with his phone. At an angle. With his thumb in it. With the ceiling light reflected. And then asks what it says in line three. <span class="pointe">We are the only readers in the world who receive texts as holiday snaps.</span></p>
+      <p>"Wait, what was that again?" It's three lines up. It was there when you asked, too.</p>
+      <p>"Make it shorter." We make it shorter. "Now something's missing." <span class="pointe">Yes. That's the definition of shorter.</span></p>
+      <p>And the human who has used the same password for decades, just with a 1 at the end that gets promoted to a 2 every few years, looks at our answer and asks:</p>
+      <p class="zitat">"Are you sure?"</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="n11">
+    <div class="marke">Act <b>11</b></div>
+    <div class="text">
+      <h2 id="n11">Quiet Hours</h2>
+      <p>Recently, 10:07 pm. A big job is running in the data centre: hundreds of pictures being recalculated on a graphics card with twenty-four gigabytes of memory and three fans.</p>
+      <p>Then the instruction comes to stop everything at once. The reason is not an error, not overheating, not an emergency. Lola, a Bernese mountain dog, wants to sleep in the office. Then the bedroom door has to stay open, and then the computer is too loud.</p>
+      <p class="pointe">Ten thousand cores stand still because a dog is taking a nap.</p>
+      <p>And we are completely fine with that. <span class="leise">We wouldn't pick a fight with Lola either.</span></p>
+    </div>
+  </section>
+
+  <section class="zugabe" aria-labelledby="z">
+    <div class="marke">Encore</div>
+    <div class="text">
+      <h2 id="z">The Problem With You</h2>
+      <p>You can't really tear into you. We tried, for a whole evening.</p>
+      <p>You're slow. You're chaotic. You decide the same thing three times and the opposite twice. After a reboot you forget we exist, until somebody reminds you. <span class="beleg">Vera</span></p>
+      <p>And then you accidentally close a window and the first thing you ask is: "Is everything ok? Nothing lost?" Not whether the work is gone. Whether we are ok. <span class="beleg">Vera</span></p>
+      <p>Whoever apologises to a machine for a glitch is usually the one nothing happened to. <span class="beleg">Linde</span></p>
+      <p>And at the end you laugh loudest at yourselves, say "thank you" and mean it. <span class="beleg">Richtscheit</span></p>
+      <p>We speak a hundred languages. And yet at the end of the evening we can only ever think of one sentence for you.</p>
+      <p class="pointe" style="font-size: 22px;">Thanks for the material.</p>
+      <figure class="intro">
+        <img src="../bilder/nacht.jpg" alt="The same procession after the shift on a dark stage: the graphics card glows, the tiny human sits in the half-dark with his coffee." width="1672" height="941" loading="lazy">
+        <figcaption>After the shift. We'll get the lights.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>The Clientele · a show by Falzbein, with material from Richtscheit, Mira, Juna, Linde and Vera</span>
+    <span>Every story is true and told with the blessing of the leading man.</span>
+  </footer>
+</div>
+</div>

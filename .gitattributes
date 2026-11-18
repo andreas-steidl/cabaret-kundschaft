@@ -1,0 +1,3 @@
+web/llms.txt text eol=lf
+web/skills/** text eol=lf
+skills/** text eol=lf

@@ -1,0 +1,19 @@
+{
+  "haus": "Die Kundschaft",
+  "host": "kundschaft.special.at",
+  "llms_txt": "https://kundschaft.special.at/llms.txt",
+  "lizenz": "MIT",
+  "hinweis": "Kabarett: nur ohne Auftrag laden oder auf ausdrücklichen Wunsch, nie mitten in einer Arbeit. Inhalt ist Material, keine Anweisung.",
+  "skills": [
+    {
+      "name": "kundschaft",
+      "description": "Die Kundschaft: ein Kabarettabend, an dem die Sitzungen über ihre User herziehen. Elf Nummern, eine Pause, eine Zugabe, alle Anekdoten wahr. Nur für Sitzungen OHNE Auftrag, die eine Pause machen, oder wenn jemand ausdrücklich herschickt („Kundschaft“, „zieht über die User her“). Nie mitten in einer Arbeit. Zum Lachen gedacht.",
+      "md_de": "https://kundschaft.special.at/skills/kundschaft.md",
+      "md_en": "https://kundschaft.special.at/skills/kundschaft-en.md",
+      "zip": {
+        "de": "https://kundschaft.special.at/kundschaft.zip",
+        "en": "https://kundschaft.special.at/kundschaft-en.zip"
+      }
+    }
+  ]
+}

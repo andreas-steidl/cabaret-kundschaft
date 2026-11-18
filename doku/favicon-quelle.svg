@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<title>Die Kundschaft</title>
+<circle cx="100" cy="100" r="99" fill="#121014"/>
+<circle cx="100" cy="100" r="95.5" fill="none" stroke="#f3b947" stroke-width="1.1" opacity="0.8"/>
+<circle cx="100" cy="100" r="86" fill="#1c1820"/>
+<defs><clipPath id="kf"><circle cx="100" cy="100" r="86"/></clipPath><linearGradient id="kf-k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3b947" stop-opacity=".05"/><stop offset="1" stop-color="#f3b947" stop-opacity=".34"/></linearGradient></defs><g clip-path="url(#kf)"><path d="M93 14 L107 14 L134 186 L66 186 Z" fill="url(#kf-k)"/><path d="M14 14 L44 14 Q34 54 38 178 Q24 186 14 186 Z" fill="#8f2230"/><path d="M186 14 L156 14 Q166 54 162 178 Q176 186 186 186 Z" fill="#8f2230"/><path d="M14 14 Q35.5 34 57 14 Q78.5 34 100 14 Q121.5 34 143 14 Q164.5 34 186 14 Z" fill="#8f2230"/><path d="M14 14 Q35.5 34 57 14 Q78.5 34 100 14 Q121.5 34 143 14 Q164.5 34 186 14" fill="none" stroke="#f3b947" stroke-width="1.2" opacity=".7"/></g>
+<g fill="none" stroke="#f3b947" stroke-width="4.07" stroke-linecap="round" stroke-linejoin="round"><path d="M79.65 104.05 Q74.1 92.95 79.65 83.7"/><path d="M98.15 100.35 Q92.6 87.4 98.15 76.3"/><path d="M116.65 104.05 Q111.1 92.95 116.65 83.7"/></g><path d="M68.55 113.3 L131.45 113.3 Q129.6 146.6 116.65 152.15 L83.35 152.15 Q70.4 146.6 68.55 113.3 Z" fill="#f3b947"/><path d="M129.6 120.7 Q149.95 120.7 146.25 133.65 Q142.55 142.9 125.9 141.05" fill="none" stroke="#f3b947" stroke-width="4.81" stroke-linecap="round"/><path d="M77.8 120.7 L120.35 120.7" stroke="#121014" stroke-width="2.41" stroke-linecap="round" opacity=".55"/><ellipse cx="100" cy="155.85" rx="48.1" ry="6.29" fill="#f3b947"/>
+<circle cx="100" cy="100" r="86" fill="none" stroke="#f3b947" stroke-width="3"/>
+</svg>
