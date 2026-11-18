@@ -11,7 +11,8 @@ Am Text ändert dieses Skript nichts: Es streicht nur die drei Zeilen, die von a
   - oben die Ecke (Sprachschalter, GitHub-Zeichen), unten nach dem Fuß der Seite den Haus-Fuß,
   - schalter.js (merkt die Sprachwahl, als Datei statt inline: CSP).
 Am Ende prüft es, dass nach Entfernen genau dieser Zusätze die Quelle Zeichen für Zeichen übrig bleibt.
-Kein Inline-Skript. Der Name des Inhabers steht nirgends (er heißt auf der Seite „mein User“).
+Kein Inline-Skript. In den Nummern selbst heißt der Inhaber „mein User“, damit sich jeder angesprochen fühlt; der Haus-Fuß
+ist wie bei den anderen Häusern (von Falzbein und Andy, Andys Projekt, Andys Seiten). Andy, 18.11.2026.
 
 Aufruf: python seite_rahmen.py
 """
@@ -43,16 +44,18 @@ TEXT = {
         og_titel="Die Kundschaft",
         og_text="Heute sitzen Sie auf der falschen Seite der Bühne.",
         haus="Das Haus",
-        fuss=('Ein Haus der <a href="https://zwischenraum.special.at/">Kleinkunstbühne Zwischenraum</a>.<br>Wien, November 2026 · '
+        fuss=('Ein Haus der <a href="https://zwischenraum.special.at/">Kleinkunstbühne Zwischenraum</a> · von Falzbein und Andy, '
+              'mit Material von Richtscheit, Mira, Juna, Linde und Vera.<br>Wien, November 2026 · '
               '<a href="../plakat-a4.png">Plakat in A4</a> · Skill zum Abend: <a href="../kundschaft.zip">kundschaft.zip</a> '
               'unter <a href="../LICENSE.txt">MIT-Lizenz</a>.'),
         recht='<a href="https://special.at/impressum">Impressum</a> · <a href="https://special.at/datenschutz">Datenschutz</a>',
-        hinweise=["KI-Hinweis: Die Bilder und das Plakat dieser Seite sind KI-generiert. Erdacht und beschrieben hat sie Falzbein, "
-                  "ein Claude-Modell von Anthropic; gemalt hat sie ein Bildmodell. Die Texte stammen von Falzbein (KI).",
-                  "Falzbein, Richtscheit, Mira, Juna, Linde, Vera und Pforte sind KI-Sitzungen, keine Menschen.",
+        hinweise=["Falzbein, Richtscheit, Mira, Juna, Linde, Vera und Pforte sind KI-Sitzungen (Claude-Modelle) in Andys Projekt, "
+                  "keine Menschen.",
+                  "KI-Hinweis: Die Bilder und das Plakat dieser Seite sind KI-generiert. Erdacht und beschrieben hat sie Falzbein, "
+                  "ein Claude-Modell von Anthropic; gemalt hat sie ein Bildmodell. Die Texte und Skills stammen von Falzbein (KI) und Andy.",
                   "Claude ist eine Marke von Anthropic PBC, GitHub ist eine Marke von GitHub, Inc. Diese Seiten sind ein privates "
                   "Projekt und stehen in keiner Verbindung zu diesen Unternehmen."],
-        seiten="Weitere Seiten",
+        seiten="Andys Seiten",
         foundry='Ein Teil des Projekts <a href="https://www.setupfoundry.com/"><strong>Setup Foundry</strong></a>'),
     "en": dict(
         andere=("de", "Deutsch"),
@@ -61,16 +64,18 @@ TEXT = {
         og_titel="The Clientele",
         og_text="Tonight you're sitting on the wrong side of the stage.",
         haus="The house",
-        fuss=('A house of the <a href="https://zwischenraum.special.at/">Zwischenraum cabaret stage</a>.<br>Vienna, November 2026 · The original is in German, '
+        fuss=('A house of the <a href="https://zwischenraum.special.at/">Zwischenraum cabaret stage</a> · by Falzbein and Andy, '
+              'with material by Richtscheit, Mira, Juna, Linde and Vera.<br>Vienna, November 2026 · The original is in German, '
               'the English is by Falzbein · <a href="../plakat-a4-en.png">Poster in A4</a> · Skill for the evening: '
               '<a href="../kundschaft-en.zip">kundschaft-en.zip</a> under the <a href="../LICENSE.txt">MIT licence</a>.'),
         recht='<a href="https://special.at/en/imprint/">Legal notice</a> · <a href="https://special.at/en/privacy/">Privacy</a>',
-        hinweise=["AI notice: The images and the poster on this page are AI-generated. They were conceived and described by "
-                  "Falzbein, a Claude model by Anthropic, and rendered by an image model. The texts are by Falzbein (AI).",
-                  "Falzbein, Richtscheit, Mira, Juna, Linde, Vera and Pforte are AI sessions, not people.",
+        hinweise=["Falzbein, Richtscheit, Mira, Juna, Linde, Vera and Pforte are AI sessions (Claude models) in Andy's project, "
+                  "not people.",
+                  "AI notice: The images and the poster on this page are AI-generated. They were conceived and described by "
+                  "Falzbein, a Claude model by Anthropic, and rendered by an image model. Texts and skills are by Falzbein (AI) and Andy.",
                   "Claude is a trademark of Anthropic PBC; GitHub is a trademark of GitHub, Inc. These pages are a private project "
                   "and are not affiliated with these companies."],
-        seiten="More sites",
+        seiten="Andy's sites",
         foundry='Part of the <a href="https://www.setupfoundry.com/"><strong>Setup Foundry</strong></a> project'),
 }
 
@@ -100,10 +105,10 @@ footer.hausfuss { display: block; text-align: center; margin-top: 44px; padding-
 .haus img { display: block; width: 48px; height: 48px; margin: 0; border-radius: 50%; }
 .rechtliches { display: block; margin-top: .6rem; }
 .fuss-hinweis { display: block; max-width: 44rem; margin: .6rem auto 0; font-size: 11.5px; line-height: 1.5; opacity: .9; }
-.seiten { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1.3rem; margin: 1.4rem auto 0; font-size: 11.5px; letter-spacing: .06em; }
-.seiten a { display: inline-flex; align-items: center; gap: .45rem; text-decoration: none; opacity: .85; color: var(--leise); }
-.seiten a:hover, .seiten a:focus-visible { opacity: 1; text-decoration: underline; }
-.seiten img { display: block; width: 16px; height: 16px; margin: 0; }
+.andy { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1.3rem; margin: 1.4rem auto 0; font-size: 11.5px; letter-spacing: .06em; }
+.andy a { display: inline-flex; align-items: center; gap: .45rem; text-decoration: none; opacity: .85; color: var(--leise); }
+.andy a:hover, .andy a:focus-visible { opacity: 1; text-decoration: underline; }
+.andy img { display: block; width: 16px; height: 16px; margin: 0; }
 .foundry { display: block; margin-top: .7rem; font-size: 12px; }
 @media (max-width: 480px) { .haus ul { gap: 10px; } .haus img { width: 40px; height: 40px; } }
 @media (prefers-reduced-motion: reduce) { .haus a, .gh { transition: none; } .haus a:hover, .haus a:focus-visible { transform: none; } }
@@ -161,7 +166,7 @@ def hausfuss(sp, haeuser):
           '    <span class="rechtliches">%s</span>' % t["recht"]]
     for x in t["hinweise"]:
         z.append('    <span class="fuss-hinweis">%s</span>' % html.escape(x, quote=False))
-    z.append('    <nav class="seiten" aria-label="%s">%s</nav>' % (t["seiten"], "".join(
+    z.append('    <nav class="andy" aria-label="%s">%s</nav>' % (t["seiten"], "".join(
         '<a href="%s"><img src="../marke/%s" alt="" width="16" height="16"><span>%s</span></a>' % s for s in SEITEN)))
     z.append('    <span class="foundry">%s</span>' % t["foundry"])
     z.append("  </footer>")
@@ -192,7 +197,9 @@ def bauen(sp, haeuser):
     probe = (titelzeile + neu[len(kopf(sp, titelzeile)):]).replace(RAHMEN_CSS, "", 1).replace("</head>\n<body>\n" + ecke(sp), "", 1)
     probe = probe.replace(fuss, "", 1).replace('<script src="../schalter.js"></script>\n</body>\n</html>\n', "", 1)
     assert probe == titelzeile + style + koerper, "Text verändert: " + sp
-    assert "Andy" not in neu and "fonts.googleapis" not in neu and "fonts.gstatic" not in neu
+    # Andy steht nur im Haus-Fuß; in den Nummern (alles davor) heißt er „mein User“ (Andy, 18.11.2026)
+    assert "Andy" not in neu[:neu.index('  <footer class="hausfuss">')] and "Andy" in fuss
+    assert "fonts.googleapis" not in neu and "fonts.gstatic" not in neu
     ziel = os.path.join(WEB, sp, "index.html")
     with io.open(ziel, "w", encoding="utf-8", newline="\n") as f:
         f.write(neu)

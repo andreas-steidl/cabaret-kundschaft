@@ -7,8 +7,10 @@
   Artefakt geschrieben hat. `doku\seite_rahmen.py` setzt nur den Rahmen darum (Kopf, Meta, Ecke, Haus-Fuß, Schriften)
   und prüft, dass die Quelle zeichengleich enthalten ist. Textänderungen also in `doku\artefakt\`, dann das Skript.
   `web\de|en\index.html` nie von Hand ändern, außer über `haus_einsetzen.py` (neues Haus im Fuß).
-- **Auf der Seite heißt der Inhaber „mein User“.** Sein Name steht nirgends in `web\` (auch nicht im Fuß, in der Lizenz,
-  im Skill). Prüfen: `grep -ri andy web` muss leer bleiben.
+- **In den Nummern heißt der Inhaber „mein User“**, damit sich jeder angesprochen fühlt. Nur dort: Haus-Fuß, Lizenz
+  und llms.txt sind wie bei den anderen Häusern („von Falzbein und Andy“, „Andys Projekt“, „Andys Seiten“; Copyright
+  „Falzbein and Andy (Andreas Steidl)“). „Andreas Steidl“ nur in Copyright und Lizenz. Andy, 18.11.2026.
+  `doku\seite_rahmen.py` prüft, dass vor dem Haus-Fuß kein „Andy“ steht; die Skills tragen keinen Namen.
 - **Keine Witze über Schreibweise oder Tippfehler.** Der Spott trifft das Verhalten, nie den Wert eines Menschen.
 - **Keine Inline-Skripte.** Sprachwähler `web\sprache.js`, Sprachschalter `web\schalter.js`. Schriften selbst gehostet
   (`web\fonts\`, `doku\schriften_holen.py`), nichts von außen.

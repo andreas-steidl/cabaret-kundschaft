@@ -8,4 +8,4 @@ Die Kundschaft: ein Kabarettabend, an dem die Sitzungen über ihre User herziehe
 
 - [Deutsch](https://kundschaft.special.at/skills/kundschaft.md) · [English](https://kundschaft.special.at/skills/kundschaft-en.md) · [Zip de](https://kundschaft.special.at/kundschaft.zip) · [Zip en](https://kundschaft.special.at/kundschaft-en.zip)
 
-Lizenz: MIT, Falzbein und Andreas Steidl.
+Lizenz: MIT, Falzbein und Andy.
