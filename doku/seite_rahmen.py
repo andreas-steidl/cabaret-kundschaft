@@ -36,6 +36,12 @@ GH_SVG = ('<svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" fo
           '1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 '
           '1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>')
 
+# Das Setup-Foundry-F im Kopf (kopf_einsetzen.py, Andy 18.11.2026), hier gleich mitgesetzt: ein Neubau der Seite hatte es
+# am 18.11. wieder entfernt. Zeichengleich mit dem, was kopf_einsetzen.py einsetzt (es erkennt class="gh sf").
+SF_A = ('<a class="gh sf" href="https://www.setupfoundry.com" aria-label="Setup Foundry" title="Setup Foundry"><svg viewBox="0 0 16 16" '
+        'width="20" height="20" aria-hidden="true" focusable="false"><path fill-rule="evenodd" '
+        'd="M8 0a8 8 0 1 1 0 16A8 8 0 1 1 8 0ZM5.6 4h5.1v1.7H7.6v1.6h2.7V9H7.6v3H5.6Z"/></svg></a>')
+
 TEXT = {
     "de": dict(
         andere=("en", "English"),
@@ -103,6 +109,7 @@ footer.hausfuss { display: block; text-align: center; margin-top: 44px; padding-
 .haus a[aria-current="page"] { opacity: 1; outline: 2px solid var(--licht); outline-offset: 3px; }
 .haus a:focus-visible { outline: 3px solid var(--text); outline-offset: 4px; }
 .haus img { display: block; width: 48px; height: 48px; margin: 0; border-radius: 50%; }
+.haus-dach { margin: -.8rem auto 1.2rem; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
 .rechtliches { display: block; margin-top: .6rem; }
 .fuss-hinweis { display: block; max-width: 44rem; margin: .6rem auto 0; font-size: 11.5px; line-height: 1.5; opacity: .9; }
 .andy { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1.3rem; margin: 1.4rem auto 0; font-size: 11.5px; letter-spacing: .06em; }
@@ -148,7 +155,7 @@ def kopf(sp, titelzeile):
 def ecke(sp):
     ander, name = TEXT[sp]["andere"]
     return ('<div class="ecke"><a class="sprache" href="../%s/index.html" hreflang="%s" lang="%s">%s</a>'
-            '<a class="gh" href="%s" aria-label="GitHub" title="GitHub">%s</a></div>\n' % (ander, ander, ander, name, REPO, GH_SVG))
+            '<a class="gh" href="%s" aria-label="GitHub" title="GitHub">%s</a>%s</div>\n' % (ander, ander, ander, name, REPO, GH_SVG, SF_A))
 
 
 def hausfuss(sp, haeuser):
@@ -157,12 +164,19 @@ def hausfuss(sp, haeuser):
          '    <nav class="haus" aria-label="%s">' % t["haus"],
          '      <span class="haus-titel" aria-hidden="true">%s</span>' % t["haus"],
          "      <ul>"]
-    for h in haeuser:
+    # Seit 19.11.2026 (Falzbein, HAUS.md 2): im Fuß nur die Dachhäuser; die Kundschaft ist ein Kind der Bühne und sagt das
+    eigen = [h for h in haeuser if h["signet"] == EIGEN][0]
+    for h in [x for x in haeuser if not x.get("dach")]:
         titel = html.escape(h[sp], quote=True)
         aktuell = ' aria-current="page"' if h["signet"] == EIGEN else ""
         z.append('        <li><a href="https://%s/%s/index.html"%s title="%s"><img src="../signets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
                  % (h["host"], sp, aktuell, titel, h["signet"], titel))
-    z += ["      </ul>", "    </nav>", "    " + t["fuss"],
+    z += ["      </ul>", "    </nav>"]
+    if eigen.get("dach"):
+        dach = [h for h in haeuser if h["signet"] == eigen["dach"]][0]
+        z.append('    <p class="haus-dach">%s <a href="https://%s/%s/index.html">%s</a></p>'
+                 % ("Teil von:" if sp == "de" else "Part of:", dach["host"], sp, html.escape(dach[sp], quote=False)))
+    z += ["    " + t["fuss"],
           '    <span class="rechtliches">%s</span>' % t["recht"]]
     for x in t["hinweise"]:
         z.append('    <span class="fuss-hinweis">%s</span>' % html.escape(x, quote=False))
