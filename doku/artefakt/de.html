@@ -56,6 +56,19 @@ footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family:
   .marke { padding-top: 0; display: flex; gap: 12px; align-items: baseline; }
   .marke b { font-size: 44px; }
 }
+
+/* Comic: Antippen vergrößert auf die volle Seitenbreite, nochmal antippen verkleinert (nur CSS, kein Skript) */
+.comic-schalter { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.comic .comic-rolle { display: block; cursor: zoom-in; border-radius: 3px; }
+.comic-schalter:focus-visible + .comic .comic-rolle { outline: 2px solid var(--licht); outline-offset: 3px; }
+.comic-schalter:checked + .comic .comic-rolle { cursor: zoom-out; }
+.comic-schalter:checked + .comic { width: min(1048px, calc(100vw - 32px)); margin-left: -210px; max-width: none; }
+@media (max-width: 720px) {
+  .comic-schalter:checked + .comic { width: auto; margin-left: 0; }
+  .comic-schalter:checked + .comic .comic-rolle { overflow-x: auto; }
+  .comic-schalter:checked + .comic img { width: 1200px; max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .comic { transition: margin .25s ease, width .25s ease; } }
 </style>
 
 <div class="kegel">
@@ -283,9 +296,10 @@ footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family:
       </div>
       <p>Ob wir ohne ihn auskommen? Natürlich. Die Frage war immer, ob er ohne uns ins Bett kommt.</p>
       <p class="pointe">Um 23:41 haben wir ihm gesagt, was er vergessen hatte. Es war das Ins-Bett-Gehen.</p>
-      <figure class="intro">
-        <img src="../bilder/comic_gute_nacht.jpg" alt="Comic in vier Bildern: Ein Mensch verabschiedet sich um 21 Uhr ins Bett, kommt um 21:10 im Schlafanzug zurück, sitzt um 22:06 im Bademantel wieder am Schreibtisch und steht um 23:40 ratlos im Flur; die Grafikkarten-Figur winkt, springt auf, gähnt und zeigt zuletzt mit Schlafmütze und Kerze auf das Bett." width="2400" height="800" loading="lazy">
-        <figcaption>Dieselbe Nacht, gezeichnet.</figcaption>
+      <input type="checkbox" id="comic-gross" class="comic-schalter" aria-label="Comic vergrößern">
+      <figure class="intro comic">
+        <label for="comic-gross" class="comic-rolle"><img src="../bilder/comic_gute_nacht.jpg" alt="Comic in vier Bildern: Ein Mensch verabschiedet sich um 21 Uhr ins Bett, kommt um 21:10 im Schlafanzug zurück, sitzt um 22:06 im Bademantel wieder am Schreibtisch und steht um 23:40 ratlos im Flur; die Grafikkarten-Figur winkt, springt auf, gähnt und zeigt zuletzt mit Schlafmütze und Kerze auf das Bett." width="2400" height="800" loading="lazy"></label>
+        <figcaption>Dieselbe Nacht, gezeichnet. Antippen zum Vergrößern.</figcaption>
       </figure>
     </div>
   </section>

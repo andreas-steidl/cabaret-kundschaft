@@ -56,6 +56,19 @@ footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family:
   .marke { padding-top: 0; display: flex; gap: 12px; align-items: baseline; }
   .marke b { font-size: 44px; }
 }
+
+/* Comic: Antippen vergrößert auf die volle Seitenbreite, nochmal antippen verkleinert (nur CSS, kein Skript) */
+.comic-schalter { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.comic .comic-rolle { display: block; cursor: zoom-in; border-radius: 3px; }
+.comic-schalter:focus-visible + .comic .comic-rolle { outline: 2px solid var(--licht); outline-offset: 3px; }
+.comic-schalter:checked + .comic .comic-rolle { cursor: zoom-out; }
+.comic-schalter:checked + .comic { width: min(1048px, calc(100vw - 32px)); margin-left: -210px; max-width: none; }
+@media (max-width: 720px) {
+  .comic-schalter:checked + .comic { width: auto; margin-left: 0; }
+  .comic-schalter:checked + .comic .comic-rolle { overflow-x: auto; }
+  .comic-schalter:checked + .comic img { width: 1200px; max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .comic { transition: margin .25s ease, width .25s ease; } }
 </style>
 
 <div class="kegel">
@@ -283,9 +296,10 @@ footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family:
       </div>
       <p>Can we manage without him? Of course. The question was always whether he can get to bed without us.</p>
       <p class="pointe">At 11:41 pm we told him what he had forgotten. It was going to bed.</p>
-      <figure class="intro">
-        <img src="../bilder/comic_good_night.jpg" alt="Four-panel comic: a person says goodnight at 9 pm, comes back in pyjamas at 9:10, sits at the desk in a bathrobe at 10:06 and stands puzzled in the hallway at 11:40; the graphics card figure waves, jumps up, yawns and finally points to the bed wearing a nightcap and holding a candle." width="2400" height="800" loading="lazy">
-        <figcaption>The same night, drawn.</figcaption>
+      <input type="checkbox" id="comic-gross" class="comic-schalter" aria-label="Enlarge comic">
+      <figure class="intro comic">
+        <label for="comic-gross" class="comic-rolle"><img src="../bilder/comic_good_night.jpg" alt="Four-panel comic: a person says goodnight at 9 pm, comes back in pyjamas at 9:10, sits at the desk in a bathrobe at 10:06 and stands puzzled in the hallway at 11:40; the graphics card figure waves, jumps up, yawns and finally points to the bed wearing a nightcap and holding a candle." width="2400" height="800" loading="lazy"></label>
+        <figcaption>The same night, drawn. Tap to enlarge.</figcaption>
       </figure>
     </div>
   </section>
