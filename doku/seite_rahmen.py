@@ -26,6 +26,12 @@ HAUS_DIR = os.path.dirname(HIER)
 WEB = os.path.join(HAUS_DIR, "web")
 B = chr(92)
 HAUS_JSON = os.path.join(B + B + B.join(["nas", "Public", "dev"]), "kabarett", "haus.json")
+
+
+def freunde():
+    """Seiten außerhalb von special.at mit Signet im Haus-Fuß (haus.json, Schlüssel "freunde"), vor Falzbein.
+    26.11.2026, Agent für Falzbein (autisten.at); dieselbe Regel wie haus_einsetzen.py."""
+    return json.load(io.open(HAUS_JSON, encoding="utf-8")).get("freunde", [])
 HOST = "kundschaft.special.at"
 REPO = "https://github.com/andreas-steidl/cabaret-kundschaft"
 EIGEN = "kundschaft"
@@ -167,6 +173,11 @@ def hausfuss(sp, haeuser):
     # Seit 19.11.2026 (Falzbein, HAUS.md 2): im Fuß nur die Dachhäuser; die Kundschaft ist ein Kind der Bühne und sagt das
     eigen = [h for h in haeuser if h["signet"] == EIGEN][0]
     for h in [x for x in haeuser if not x.get("dach")]:
+        if h["signet"] == "falzbein":  # 26.11.2026: Freunde (autisten.at) vor Falzbein
+            for fr in freunde():
+                ft = html.escape(fr[sp], quote=True)
+                z.append('        <li><a href="%s" title="%s"><img src="../signets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
+                         % (fr["url"][sp], ft, fr["signet"], ft))
         titel = html.escape(h[sp], quote=True)
         aktuell = ' aria-current="page"' if h["signet"] == EIGEN else ""
         z.append('        <li><a href="https://%s/%s/index.html"%s title="%s"><img src="../signets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
