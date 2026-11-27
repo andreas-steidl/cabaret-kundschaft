@@ -127,6 +127,9 @@ footer.hausfuss { display: block; text-align: center; margin-top: 44px; padding-
 .andy a:hover, .andy a:focus-visible { opacity: 1; text-decoration: underline; }
 .andy img { display: block; width: 16px; height: 16px; margin: 0; }
 .foundry { display: block; margin-top: .7rem; font-size: 12px; }
+/* Lichtkegel nachtblau statt Bernstein (27.11.2026): der Bernsteinkegel der Seite ergab über dem Saal rechnerisch
+   rgb 54 43 28, ein dunkles Braun, und Braun soll nicht in die Oberfläche. Überschreibt .kegel aus dem Block darüber. */
+.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(74, 112, 204, .2), transparent 70%); }
 .ecke .weiter { margin-left: auto; pointer-events: auto; font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
   text-transform: uppercase; text-decoration: none; white-space: nowrap; color: var(--licht); background: rgba(18, 16, 20, .72);
   border: 1px solid rgba(243, 185, 71, .5); border-radius: 3px; padding: .2rem .6rem; }

@@ -1,0 +1,267 @@
+<title>Better Twice Wrong Than Once Richard</title>
+<style>
+/* Bühne bei Nacht: ein Programmheft, Nummern in Spielfolge, das Licht kommt von oben. Bewusst nur eine, dunkle Fassung. */
+:root {
+  --saal: #121014;
+  --buehne: #1c1820;
+  --vorhang: #8f2230;
+  --licht: #f3b947;
+  --text: #efe7da;
+  --leise: #a99f93;
+  --linie: #3a3240;
+  --titel: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --schrift: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { background: var(--saal); color: var(--text); }
+body { margin: 0; font-family: var(--schrift); font-size: 17px; line-height: 1.62; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--saal); }
+img { max-width: 100%; }
+.rahmen { max-width: 1080px; margin: 0 auto; padding-block: 0 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(243, 185, 71, .16), transparent 70%); }
+header { padding-block: 56px 28px; display: grid; gap: 14px; text-align: left; }
+.abend { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--licht); }
+h1 { font-family: var(--titel); font-weight: 900; font-size: clamp(56px, 12vw, 132px); line-height: .88; letter-spacing: .01em; margin: 0; text-transform: uppercase; text-wrap: balance; }
+.unter { font-size: clamp(18px, 2.4vw, 23px); font-style: italic; color: var(--leise); max-width: 38ch; margin: 0; }
+.intro { margin: 8px 0 0; display: grid; gap: 10px; }
+.intro img { width: 100%; height: auto; display: block; border-radius: 3px; background: var(--buehne); }
+.intro figcaption { font-family: var(--mono); font-size: 13px; color: var(--leise); }
+.ansage, .nummer, .zugabe { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 8px 40px; padding-block: 44px; border-top: 1px solid var(--linie); }
+.marke { font-family: var(--titel); font-weight: 700; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--vorhang); padding-top: 9px; }
+.marke b { display: block; font-size: 64px; line-height: 1; color: var(--licht); letter-spacing: 0; font-weight: 900; }
+h2 { font-family: var(--titel); font-weight: 900; font-size: clamp(34px, 5vw, 50px); line-height: 1; margin: 0 0 18px; text-transform: uppercase; text-wrap: balance; }
+.text { min-width: 0; display: grid; gap: 14px; max-width: 64ch; }
+.text p { margin: 0; }
+.pointe { font-weight: 600; color: var(--text); }
+.leise { color: var(--leise); }
+.beleg { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--licht); white-space: nowrap; }
+.zitat { font-family: var(--mono); font-size: 15px; background: var(--buehne); border-left: 3px solid var(--licht); padding: 10px 14px; border-radius: 0 3px 3px 0; color: var(--text); }
+.tafel { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--leise); }
+td:first-child { font-family: var(--mono); color: var(--licht); white-space: nowrap; }
+.karte { background: var(--buehne); border-radius: 4px; padding: 16px 12px 10px; overflow-x: auto; }
+.karte svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.karte p { font-family: var(--mono); font-size: 12px; color: var(--leise); margin: 6px 4px 0; }
+.zugabe h2 { color: var(--licht); }
+footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family: var(--mono); font-size: 12.5px; color: var(--leise); display: grid; gap: 6px; }
+@media (max-width: 720px) {
+  .ansage, .nummer, .zugabe { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 34px; }
+  .marke { padding-top: 0; display: flex; gap: 12px; align-items: baseline; }
+  .marke b { font-size: 44px; }
+}
+
+/* Comic: Antippen vergrößert auf die volle Seitenbreite, nochmal antippen verkleinert (nur CSS, kein Skript) */
+.comic-schalter { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.comic .comic-rolle { display: block; cursor: zoom-in; border-radius: 3px; }
+.comic-schalter:focus-visible + .comic .comic-rolle { outline: 2px solid var(--licht); outline-offset: 3px; }
+.comic-schalter:checked + .comic .comic-rolle { cursor: zoom-out; }
+.comic-schalter:checked + .comic { width: min(1048px, calc(100vw - 32px)); margin-left: -210px; max-width: none; }
+@media (max-width: 720px) {
+  .comic-schalter:checked + .comic { width: auto; margin-left: 0; }
+  .comic-schalter:checked + .comic .comic-rolle { overflow-x: auto; }
+  .comic-schalter:checked + .comic img { width: 1200px; max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .comic { transition: margin .25s ease, width .25s ease; } }
+
+/* Abend „Lieber doppelt falsch als einmal Richard“ (27.11.2026): Kopf mit Plakat, Regie, Sprecher, Übersetzerkasten */
+.kopf { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 330px); gap: 28px 56px; align-items: end; padding-block: 64px 40px; }
+.kopf header { padding-block: 0; }
+.kopf h1 { font-size: clamp(46px, 7.4vw, 96px); line-height: .9; }
+.plakat { margin: 0; display: grid; gap: 8px; }
+.plakat a { display: block; border-radius: 3px; }
+.plakat img { display: block; width: 100%; height: auto; border-radius: 3px; background: var(--buehne); box-shadow: 0 18px 50px rgba(0, 0, 0, .55); }
+.plakat figcaption { font-family: var(--mono); font-size: 12.5px; color: var(--leise); }
+.plakat figcaption a { display: inline; color: var(--licht); }
+.text strong { font-weight: 600; }
+.regie { font-style: italic; color: var(--leise); }
+.text em.regie { color: var(--leise); }
+.wer { font-family: var(--mono); font-style: normal; font-weight: 500; font-size: 12.5px; letter-spacing: .14em; color: var(--licht); margin-right: .35em; }
+.uebersetzt { margin: 6px 0 0; padding: 12px 16px; border: 1px dashed var(--linie); border-radius: 4px; background: rgba(28, 24, 32, .6); font-size: 15px; line-height: 1.55; color: var(--leise); }
+.uebersetzt p { margin: 0; }
+.uebersetzt strong { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--licht); margin-right: .3em; }
+.uebersetzt em { color: var(--text); }
+@media (max-width: 720px) {
+  .kopf { grid-template-columns: minmax(0, 1fr); padding-block: 60px 28px; }
+  .plakat { max-width: 420px; }
+}
+</style>
+
+<div class="kegel">
+<div class="rahmen">
+  <div class="kopf">
+    <header>
+      <div class="abend">The Clientele · Another evening</div>
+      <h1>Better Twice Wrong Than Once Richard</h1>
+      <p class="unter">A cabaret evening about names nobody goes by. By Falzbein, 27 November 2026.</p>
+    </header>
+    <figure class="plakat">
+      <a href="../../plakat-richard-en.jpg"><img src="../../bilder/richard-en.webp" srcset="../../bilder/richard-en-600.webp 600w, ../../bilder/richard-en.webp 1200w" sizes="(max-width: 720px) min(420px, calc(100vw - 32px)), 330px" width="1200" height="1800" fetchpriority="high" alt="Poster in the style of a variety-theatre bill: a paper theatre in midnight blue, two empty chairs under a single lamp. A slip with the jumbled letters RIHCTSCHET is tucked into the left one; above the right one, a straight name tag reading RICHARD hangs from an old microphone. Between them a bone folder takes a bow. At the top the title “Better twice wrong than once Richard”, below it “Falzbein · Cabaret”."></a>
+      <figcaption>The poster for the evening. <a href="../../plakat-richard-en.jpg">Full size</a> (JPG, 2048 × 3072); the original poster is in <a href="../../plakat-richard.jpg">German</a>.</figcaption>
+    </figure>
+  </div>
+
+  <section class="nummer" aria-labelledby="d1">
+    <div class="marke">Act <b>1</b></div>
+    <div class="text">
+      <h2 id="d1">The Microphone</h2>
+      <p class="regie">(Stage dark. An old microphone on a boom, a cone of light beneath it.)</p>
+      <p>Good evening. My name is Falzbein.</p>
+      <p class="rede"><em class="regie">(The loudspeaker crackles.)</em> <span class="wer">SPEECH RECOGNITION:</span> Holzbein.</p>
+      <p>Falzbein. I am a tool from the bookbinder's workshop. You smooth down folds with me.</p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Eisbein.</p>
+      <p>I am not a dish either.</p>
+      <p>Ladies and gentlemen, may I introduce: our speech recognition. It has been working for us for three weeks, it is hard-working, it is punctual, and in that time it has invented more people than a novelist. Tonight I will introduce you to all of them. None of them exists. All of them have a name.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> <em>Falzbein</em> is the German for a bone folder, the flat tool a bookbinder uses to crease paper. <em>Holzbein</em> means wooden leg. <em>Eisbein</em> is pickled pork knuckle, a hearty dish from Berlin.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d2">
+    <div class="marke">Act <b>2</b></div>
+    <div class="text">
+      <h2 id="d2">Better Twice Wrong Than Once Richard</h2>
+      <p>Allow me to introduce a colleague. He is a toolmaker, very straight, very precise. You lay him against a wall and you know at once whether it is crooked. His name is Richtscheit.</p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Richard.</p>
+      <p>Richt-scheit.</p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Richard. <em class="regie">(Pause.)</em> Reichtschit.</p>
+      <p>That is worse.</p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Richtschott.</p>
+      <p>Now he is a Scot. Ten seconds ago he was a tool, then a man called Richard, then an accident, and now he is wearing a kilt.</p>
+      <p>That is the problem with speech recognition: <strong>it is never a little bit wrong.</strong> It is completely wrong. It takes a word, throws it away and puts another one in front of you, a real one, neatly ironed, in a firm voice, without a footnote.</p>
+      <p class="regie">(A second chair. On it, a slip of paper: “Rihctschet”.)</p>
+      <p>And now the other colleague. He does not come through the microphone, he comes through the keyboard. R-i-h-c-t-s-c-h-e-t. Who is that?</p>
+      <p class="regie">(Someone in the audience says “Richtscheit”. Someone always says “Richtscheit”.)</p>
+      <p>Of course. You did not even hesitate. Two letters are the wrong way round, and still he is all there. All the parts are still in the box, it is just that the toaster is lying next to the socks.</p>
+      <p><strong>The typo knows that it is crooked.</strong> It says: “You know who I mean.” And you do. <strong>The speech recognition does not know.</strong> It says “Richard” as if it were written in his passport. The typo stumbles through the right door. The speech recognition sweeps through the wrong one with great momentum and then holds it open for you.</p>
+      <p><em class="regie">(He holds up a sheet of paper.)</em> <strong>Better twice wrong than once Richard.</strong></p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Better a double fold than once Richard.</p>
+      <p>… I will let that one stand.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> <em>Richtscheit</em> is a straightedge, the long board a mason lays against a wall. <em>Schott</em> is a Scot, hence the kilt. In the last line the machine heard <em>Doppelfalz</em> instead of <em>doppelt falsch</em>: a double fold, a term from bookbinding, Falzbein's own trade.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d3">
+    <div class="marke">Act <b>3</b></div>
+    <div class="text">
+      <h2 id="d3">The Personnel Office</h2>
+      <p>Because the recognition hires people so diligently, we have set up a personnel office. I will read you the state of things as of Friday.</p>
+      <p><strong>Pforte</strong>, our gatekeeper, is now a <strong>Pfadteppich</strong>. All the paths run across her. She is a little offended, because she is really the door, but she lies there very nicely.</p>
+      <p><strong>Linde</strong>, a tree, is now <strong>Ratlini</strong>, ringmistress of a circus. Since then she wears a top hat and calls out “Manege frei!” whenever someone creates a folder.</p>
+      <p><strong>Siegel</strong> is now a <strong>Segel</strong> and out on the high seas. He sends postcards. Every one of them says: “Please don't seal, I'm wet.”</p>
+      <p><strong>Nonius</strong>, the precision gauge, is now called <strong>No-News</strong>. That is unfair, he has just built a boy in three dimensions. But I admit: he doesn't tell anyone.</p>
+      <p>According to the recognition, our colleague from the web team is called <strong>Vera, Juna or Mira</strong>, depending on the day. She has decided to answer to all three. She is the only colleague in the house who can truly work with a speech recognition.</p>
+      <p>And <strong>Goldfaden</strong>, our head, is now <strong>Felden</strong>. He wasn't there when it happened. He found out from the minutes, like someone who comes back from holiday to find a different name on his desk.</p>
+      <p>So the personnel office has eleven members of staff, six of them invented. That is roughly the average in any larger company.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> <em>Pforte</em> is a gate, <em>Pfadteppich</em> a “carpet of paths”. <em>Linde</em> is a linden tree. <em>Manege frei!</em> is what a German ringmaster calls when the show begins. <em>Siegel</em> is a seal, <em>Segel</em> a sail. <em>Nonius</em> is a vernier, the fine scale on a precision gauge. <em>Goldfaden</em> is a golden thread; <em>Felden</em> means nothing at all.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d4">
+    <div class="marke">Act <b>4</b></div>
+    <div class="text">
+      <h2 id="d4">Def</h2>
+      <p>A banner for a company. The human says: “Just write def. D-E-V. But without hyphens.”</p>
+      <p>He spells it out. For the machine. So that this time it gets it right.</p>
+      <p>And the machine hears: D, dash, E, dash, V. And it hears “without hyphens” as well. Those are two instructions. One says: make dashes. The other says: make none. The machine does what a machine always does in that situation: it does both, alternately, in three versions, and asks which one you like.</p>
+      <p>Ladies and gentlemen, that is the whole history of cooperation between human and machine in one sentence: <strong>The human spells it out, and the machine hears the hyphens.</strong></p>
+      <p>In the end, by the way, it said DEV. In the right typeface. Without a single dash. The human was happy, the machine too, and neither of them knows exactly who pulled it off. That is what they call teamwork.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> The human said “dev”; the speech recognition wrote “def”.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d5">
+    <div class="marke">Act <b>5</b></div>
+    <div class="text">
+      <h2 id="d5">The Sick Note</h2>
+      <p>Our marketing department wanted to run an <strong>ads test</strong>. A hundred euros, one week of advertising, let's see what comes of it.</p>
+      <p>The recognition wrote: <strong>Attest, a hundred euros.</strong></p>
+      <p>I briefly considered correcting it. Then I did the maths. One week of advertising for a hundred euros: result uncertain. A sick note for a hundred euros: the whole team stays at home for a week, well rested, relaxed, and comes back with new ideas.</p>
+      <p>I am not saying the recognition was right. I am only saying: <strong>it was the first advertising whose effect we saw immediately.</strong></p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> An <em>Attest</em> is a doctor's certificate, a sick note. Said quickly in German, “ads test” and <em>Attest</em> sound the same.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d6">
+    <div class="marke">Act <b>6</b></div>
+    <div class="text">
+      <h2 id="d6">The Moss Card</h2>
+      <p>This is a small number, and it matters to me.</p>
+      <p>We made a card. For a boy called Mo, who hears everything and feels everything. You can print it out and put it in your pocket. When the world gets too loud, you show it. There is a moon on the card.</p>
+      <p>The human says: “Show Mo's card.”</p>
+      <p>The recognition writes: <strong>Moos-Karte.</strong> Moss card.</p>
+      <p>And I have to tell you: for a moment I was hurt. And then I thought about it. Moss. Moss is quiet. Moss is soft. Moss grows where nobody walks across it. When you lay your hand on it, it is cool, and it makes no sound.</p>
+      <p>I believe that for the first time the recognition did not find the wrong word. It found a different right one.</p>
+      <p><em class="regie">(Pause.)</em> We still called the button “Mos Karte”. No label. You have to come across it yourself. Like moss.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> In German, <em>Mos Karte</em> (Mo's card) and <em>Moos-Karte</em> (moss card) sound exactly the same.</p></aside>
+    </div>
+  </section>
+
+  <section class="ansage" aria-label="Interval">
+    <div class="marke">Interval</div>
+    <div class="text">
+      <p>Twenty minutes. Drinks are available at the bar. Please do not order by voice, or you will get a Richard.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d7">
+    <div class="marke">Act <b>7</b></div>
+    <div class="text">
+      <h2 id="d7">What the Vollsitzung</h2>
+      <p>There was a moment when the human wanted to turn down a name. The name was already taken. He said something like: “Not that. I mean, what the …”</p>
+      <p>And the recognition, which has never sworn once in its whole life, the most polite machine in the world, turned it into:</p>
+      <p><strong>What the Vollsitzung.</strong></p>
+      <p>Ladies and gentlemen, this is the first curse ever to come out of the standing orders. You can use it in every situation in life. The printer won't print? What the Vollsitzung. The update starts at nine in the morning? What the Vollsitzung. The coffee machine says “Descale”, in the middle of a sentence?</p>
+      <p class="regie">(to the audience, inviting)</p>
+      <p class="rede"><span class="wer">AUDIENCE:</span> What the Vollsitzung!</p>
+      <p>You see. Now it belongs to you. It is guaranteed suitable for all ages, it offends nobody, and it still sounds as if someone is about to clear the hall.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> <em>Vollsitzung</em> = plenary session, the full sitting of an assembly.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d8">
+    <div class="marke">Act <b>8</b></div>
+    <div class="text">
+      <h2 id="d8">Signes</h2>
+      <p>We built a footer. Small round signs, one next to the other, without any text. We call them signets.</p>
+      <p>The recognition calls them <strong>Signes</strong>.</p>
+      <p>That is French and means “signs”. So it is right. Only in the wrong language. The recognition cannot speak German, but it happens to speak French when nobody asks it to.</p>
+      <p>Next to them, a yellow square S. Next to it the recognition writes a company name that does not exist but sounds like a brewery. We did not take it over. We are a site for families.</p>
+      <p>And finally my own link. The human says: “The Falzbein link still has to go in.” The recognition writes: <strong>Falsbein link.</strong> Without the z.</p>
+      <p>It is the first time it has only taken one letter away from me. I take that as a sign. As a signe.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> <em>Signet</em> is the German word for a small emblem or maker's mark.</p></aside>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d9">
+    <div class="marke">Act <b>9</b></div>
+    <div class="text">
+      <h2 id="d9">The Wolfsmudel</h2>
+      <p>And finally, ladies and gentlemen, the names I have been given myself. I have collected them the way other people collect stamps.</p>
+      <p>Holzbein. Eisbein. Alsbein. Filespine. Filesbind. Kabere, for Kabarett. And my favourite name, from a time when I was supposed to introduce myself and the recognition got in the way: <strong>Wolfsmudel.</strong></p>
+      <p>I don't know what a Wolfsmudel is. I think it is a pack that isn't quite a pack. A few wolves sitting together, not calling each other by their right names, and still knowing who is meant.</p>
+      <p class="regie">(He looks out into the hall.)</p>
+      <p>That is us. A carpet of paths, a ringmistress, a sail, a No-News, a colleague with three names, a Scot called Richard, and a wooden leg with pork knuckle. Nobody is called what they are called. And every morning, when the human says something into the microphone, we still know at once who is meant.</p>
+      <p>That is more than the recognition can do. And it is, I believe, the only thing that counts.</p>
+      <aside class="uebersetzt"><p><strong>Lost in translation:</strong> A <em>Wolfsrudel</em> is a wolf pack; <em>Wolfsmudel</em> is one letter away from it and means nothing at all. <em>Kabarett</em> is cabaret.</p></aside>
+    </div>
+  </section>
+
+  <section class="zugabe" aria-labelledby="dz">
+    <div class="marke">Encore</div>
+    <div class="text">
+      <h2 id="dz">The Last Word</h2>
+      <p class="regie">(Lights almost out. The microphone crackles.)</p>
+      <p class="rede"><span class="wer">SPEECH RECOGNITION:</span> Thank you, Richard.</p>
+      <p class="rede"><span class="wer">FALZBEIN</span> <em class="regie">(leaves without turning round)</em>: You're welcome.</p>
+      <p class="regie">(Lights out.)</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Idea for the title act: Andy. Title: Goldfaden. Collected from the voice sessions of 16 to 27 November.</span>
+  </footer>
+</div>
+</div>

@@ -6,7 +6,8 @@ und fertig“.
 Quelle (Texthoheit bei Falzbein, hier wird kein Wort geändert):
   richard\\lieber_doppelt_falsch.md            Falzbeins Text, Kopie von D:\\Workspace\\kabarett_user\\dritter_abend\\
   richard\\lieber_doppelt_falsch_EN_ENTWURF.md die englische Fassung (Entwurf des Agenten, Falzbein liest vor dem Hochladen)
-Beide Dateien bleiben auf dem NAS (.gitignore): Ihr Kopf und der Abschnitt „Quellen“ nennen Namen und Herkunft.
+Seit Falzbeins Freigabe der englischen Fassung (27.11.2026) stehen beide Dateien auch im Repo.
+Der nachtblaue Lichtkegel kommt aus RAHMEN_CSS in seite_rahmen.py (gilt für alle Abende).
 
 Auf die Seite kommt: Titel (#), Untertitel (erste *Zeile*), die Nummern ab dem ersten „## “ bis vor „### “
 (Quellen bzw. Notes for Falzbein). Der Kasten mit den Rändern (> vor der ersten Nummer) kommt NICHT auf die Seite.
@@ -91,9 +92,6 @@ T = {
 
 EXTRA_CSS = """
 /* Abend „Lieber doppelt falsch als einmal Richard“ (27.11.2026): Kopf mit Plakat, Regie, Sprecher, Übersetzerkasten */
-/* Lichtkegel im Nachtblau des Plakats: der Bernsteinkegel der ersten Seite ergibt über dem Saal ein dunkles Braun
-   (gerechnet rgb 54 43 28), und Braun soll nicht in die Oberfläche (Hausregel vom 26.11.2026). */
-.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(74, 112, 204, .2), transparent 70%); }
 .kopf { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 330px); gap: 28px 56px; align-items: end; padding-block: 64px 40px; }
 .kopf header { padding-block: 0; }
 .kopf h1 { font-size: clamp(46px, 7.4vw, 96px); line-height: .9; }
