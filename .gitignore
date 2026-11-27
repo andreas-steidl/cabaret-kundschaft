@@ -13,3 +13,9 @@ doku/ENTSTEHUNG.md
 
 # Die Webseite liegt online (Mira laedt sie aus web/ hoch); seit 18.11.2026 nicht mehr im Repo (Andy)
 web/
+# Abend "Lieber doppelt falsch als einmal Richard" (27.11.2026): Falzbeins Textquelle und der englische Entwurf
+# (Kopf und Quellen nennen Namen und Herkunft) bleiben auf dem NAS; im Repo steht der gebaute Text in doku/artefakt/
+doku/richard/*.md
+# Plakatbilder dieses Abends stehen unter CC BY-NC-SA 4.0 (Andy, 27.11.2026), nicht unter der MIT-LICENSE dieses Repos:
+# bis die Lizenz des Repos geklaert ist, nur auf dem NAS
+plakat/richard/*.png

@@ -18,5 +18,9 @@
   → `doku\seite_rahmen.py` (Seiten) → `doku\readme_banner.py` (README-Banner). Sitemap und robots:
   `D:\Workspace\Bilder\falzbein\register\sitemaps_bauen.py --schreiben --stand <datum>`, llms.txt und `web\skills\`:
   `llms_bauen.py --schreiben` daneben.
+- **Abende** (seit 27.11.2026): jede weitere Abendseite liegt unter `web\de|en\<name>\index.html`, unten auf jeder Seite der Waehler
+  "Die Abende der Kundschaft" (`ABENDE` in `doku\seite_rahmen.py`), in der Ecke ein Verweis auf den anderen Abend. Der Abend
+  "Lieber doppelt falsch als einmal Richard": Text `doku\richard\*.md` (Falzbein, nur NAS), Plakat `plakat\plakat2.py`,
+  Seite `doku\richard_bauen.py` (nach `seite_rahmen.py`). Bilder dieses Abends: CC BY-NC-SA 4.0, Texte MIT.
 - **Privat, nie ins Repo:** `doku\MATERIAL.md`, `doku\ENTSTEHUNG.md` (Wortlaute, Persönliches; siehe `.gitignore`).
 - Repo `andreas-steidl/cabaret-kundschaft`, privat. Öffentlich schaltet nur Andy.

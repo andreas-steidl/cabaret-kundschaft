@@ -14,6 +14,10 @@ Am Ende prüft es, dass nach Entfernen genau dieser Zusätze die Quelle Zeichen 
 Kein Inline-Skript. In den Nummern selbst heißt der Inhaber „mein User“, damit sich jeder angesprochen fühlt; der Haus-Fuß
 ist wie bei den anderen Häusern (von Falzbein und Andy, Andys Projekt, Andys Seiten). Andy, 18.11.2026.
 
+27.11.2026 (Agent für Falzbein, Abend „Lieber doppelt falsch als einmal Richard“): rechts in der Ecke ein Verweis auf den
+neuen Abend, vor dem Haus-Fuß der Wähler aller Abende (ABENDE, abende_nav). ecke() und hausfuss() nehmen jetzt auch
+Unterseiten (tiefe); richard_bauen.py daneben benutzt sie für de/richard/ und en/richard/.
+
 Aufruf: python seite_rahmen.py
 """
 import html
@@ -123,6 +127,22 @@ footer.hausfuss { display: block; text-align: center; margin-top: 44px; padding-
 .andy a:hover, .andy a:focus-visible { opacity: 1; text-decoration: underline; }
 .andy img { display: block; width: 16px; height: 16px; margin: 0; }
 .foundry { display: block; margin-top: .7rem; font-size: 12px; }
+.ecke .weiter { margin-left: auto; pointer-events: auto; font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; text-decoration: none; white-space: nowrap; color: var(--licht); background: rgba(18, 16, 20, .72);
+  border: 1px solid rgba(243, 185, 71, .5); border-radius: 3px; padding: .2rem .6rem; }
+.ecke .weiter:hover, .ecke .weiter:focus-visible { border-color: var(--licht); color: var(--text); }
+nav.abende { display: block; margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--linie); }
+.abende-titel { display: block; margin-bottom: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--leise); }
+.abende ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.abende li { margin: 0; }
+.abende a { display: flex; gap: 16px; align-items: center; height: 100%; box-sizing: border-box; text-decoration: none; color: var(--text);
+  background: var(--buehne); border: 1px solid var(--linie); border-radius: 4px; padding: 10px 16px 10px 10px; transition: border-color .2s; }
+.abende a:hover, .abende a:focus-visible { border-color: var(--licht); }
+.abende a[aria-current="page"] { border-color: rgba(243, 185, 71, .6); }
+.abende img { display: block; flex: none; width: 60px; height: auto; margin: 0; border-radius: 2px; }
+.abende .jetzt { display: block; margin-bottom: 5px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--licht); }
+.abende .abend-name { display: block; font-family: var(--titel); font-weight: 900; font-size: 23px; line-height: 1.02; text-transform: uppercase; }
+.abende .abend-zeile { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12px; color: var(--leise); }
 @media (max-width: 480px) { .haus ul { gap: 10px; } .haus img { width: 40px; height: 40px; } }
 @media (prefers-reduced-motion: reduce) { .haus a, .gh { transition: none; } .haus a:hover, .haus a:focus-visible { transform: none; } }
 </style>
@@ -158,14 +178,51 @@ def kopf(sp, titelzeile):
             % (sp, titelzeile, e(t["description"]), HOST, HOST, HOST, e(t["og_titel"]), e(t["og_text"]), HOST, "" if sp == "de" else "-en"))
 
 
-def ecke(sp):
+def ecke(sp, tiefe="../", unterseite="", weiter=None):
+    """Kopf-Ecke. 27.11.2026 (Abend „Lieber doppelt falsch“): tiefe und unterseite für Seiten wie de/richard/,
+    weiter = (href, text) für den Verweis auf den anderen Abend rechts in der Ecke."""
     ander, name = TEXT[sp]["andere"]
-    return ('<div class="ecke"><a class="sprache" href="../%s/index.html" hreflang="%s" lang="%s">%s</a>'
-            '<a class="gh" href="%s" aria-label="GitHub" title="GitHub">%s</a>%s</div>\n' % (ander, ander, ander, name, REPO, GH_SVG, SF_A))
+    w = '<a class="weiter" href="%s">%s</a>' % weiter if weiter else ""
+    return ('<div class="ecke"><a class="sprache" href="%s%s/%sindex.html" hreflang="%s" lang="%s">%s</a>'
+            '<a class="gh" href="%s" aria-label="GitHub" title="GitHub">%s</a>%s%s</div>\n'
+            % (tiefe, ander, unterseite, ander, ander, name, REPO, GH_SVG, SF_A, w))
 
 
-def hausfuss(sp, haeuser):
-    t = TEXT[sp]
+# Die Abende der Kundschaft (27.11.2026, Agent für Falzbein): ein Wähler vor dem Haus-Fuß auf jeder Seite des Hauses.
+# pfad = Unterordner unter de/ bzw. en/ ("" = die erste Seite). bild = bilder/<bild>-<sp>.webp (aus ..\plakat\plakat2.py).
+# Der zweite Abend vom 18.11. ist pausiert und nie erschienen; darum stehen hier keine Ordnungszahlen.
+ABENDE = [
+    dict(pfad="", bild="abend-kundschaft", de="Die Kundschaft", en="The Clientele",
+         zeile_de="Elf Nummern, eine Pause, eine Zugabe", zeile_en="Eleven acts, an interval, an encore", w=240, h=340),
+    dict(pfad="richard/", bild="abend-richard", de="Lieber doppelt falsch als einmal Richard",
+         en="Better Twice Wrong Than Once Richard",
+         zeile_de="Neun Nummern, eine Pause, eine Zugabe", zeile_en="Nine acts, an interval, an encore", w=240, h=360),
+]
+
+
+def abende_nav(sp, eigen_pfad):
+    """Liste aller Abende, Verweise relativ zur Seite unter <sp>/<eigen_pfad>."""
+    tiefe = "../" * (1 + eigen_pfad.count("/"))
+    hoch = "../" * eigen_pfad.count("/")
+    titel = "Die Abende der Kundschaft" if sp == "de" else "The Clientele's evenings"
+    hier = "Sie sind hier" if sp == "de" else "You are here"
+    z = ['  <nav class="abende" aria-label="%s">' % titel,
+         '    <span class="abende-titel">%s</span>' % titel,
+         "    <ul>"]
+    for a in ABENDE:
+        aktuell = a["pfad"] == eigen_pfad
+        z.append('      <li><a href="%s%sindex.html"%s><img src="%sbilder/%s-%s.webp" alt="" width="%d" height="%d" loading="lazy">'
+                 '<span>%s<span class="abend-name">%s</span><span class="abend-zeile">%s</span></span></a></li>'
+                 % (hoch, a["pfad"], ' aria-current="page"' if aktuell else "", tiefe, a["bild"], sp, a["w"], a["h"],
+                    '<span class="jetzt">%s</span>' % hier if aktuell else "", html.escape(a[sp], quote=False),
+                    html.escape(a["zeile_" + sp], quote=False)))
+    z += ["    </ul>", "  </nav>"]
+    return "\n".join(z) + "\n"
+
+
+def hausfuss(sp, haeuser, t=None, tiefe="../"):
+    """t: Texte (Standard TEXT[sp]), tiefe: Weg zur Wurzel von web\\ (27.11.2026 für Unterseiten wie de/richard/)."""
+    t = t or TEXT[sp]
     z = ['  <footer class="hausfuss">',
          '    <nav class="haus" aria-label="%s">' % t["haus"],
          '      <span class="haus-titel" aria-hidden="true">%s</span>' % t["haus"],
@@ -176,12 +233,12 @@ def hausfuss(sp, haeuser):
         if h["signet"] == "falzbein":  # 26.11.2026: Freunde (autisten.at) vor Falzbein
             for fr in freunde():
                 ft = html.escape(fr[sp], quote=True)
-                z.append('        <li><a href="%s" title="%s"><img src="../signets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
-                         % (fr["url"][sp], ft, fr["signet"], ft))
+                z.append('        <li><a href="%s" title="%s"><img src="%ssignets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
+                         % (fr["url"][sp], ft, tiefe, fr["signet"], ft))
         titel = html.escape(h[sp], quote=True)
         aktuell = ' aria-current="page"' if h["signet"] == EIGEN else ""
-        z.append('        <li><a href="https://%s/%s/index.html"%s title="%s"><img src="../signets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
-                 % (h["host"], sp, aktuell, titel, h["signet"], titel))
+        z.append('        <li><a href="https://%s/%s/index.html"%s title="%s"><img src="%ssignets/signet-%s-rund.svg" alt="%s" width="48" height="48"></a></li>'
+                 % (h["host"], sp, aktuell, titel, tiefe, h["signet"], titel))
     z += ["      </ul>", "    </nav>"]
     if eigen.get("dach"):
         dach = [h for h in haeuser if h["signet"] == eigen["dach"]][0]
@@ -192,7 +249,7 @@ def hausfuss(sp, haeuser):
     for x in t["hinweise"]:
         z.append('    <span class="fuss-hinweis">%s</span>' % html.escape(x, quote=False))
     z.append('    <nav class="andy" aria-label="%s">%s</nav>' % (t["seiten"], "".join(
-        '<a href="%s"><img src="../marke/%s" alt="" width="16" height="16"><span>%s</span></a>' % s for s in SEITEN)))
+        '<a href="%s"><img src="%smarke/%s" alt="" width="16" height="16"><span>%s</span></a>' % (s[0], tiefe, s[1], s[2]) for s in SEITEN)))
     z.append('    <span class="foundry">%s</span>' % t["foundry"])
     z.append("  </footer>")
     return "\n".join(z) + "\n"
@@ -213,13 +270,15 @@ def bauen(sp, haeuser):
     assert koerper.startswith("\n<div class=\"kegel\">")
     assert koerper.count("  </footer>\n") == 1 and "<script" not in quelle
     stelle = koerper.index("  </footer>\n") + len("  </footer>\n")
-    fuss = hausfuss(sp, haeuser)
-    neu = (kopf(sp, titelzeile) + style + RAHMEN_CSS + "</head>\n<body>\n" + ecke(sp)
+    # 27.11.2026: vor dem Haus-Fuß der Wähler der Abende, in der Ecke der Verweis auf den neuen Abend
+    fuss = abende_nav(sp, "") + hausfuss(sp, haeuser)
+    eck = ecke(sp, weiter=("richard/index.html", "Neuer Abend →" if sp == "de" else "New evening →"))
+    neu = (kopf(sp, titelzeile) + style + RAHMEN_CSS + "</head>\n<body>\n" + eck
            + koerper[:stelle] + fuss + koerper[stelle:]
            + '<script src="../schalter.js"></script>\n</body>\n</html>\n')
     # Gegenprobe: ohne die Zusätze bleibt die Quelle zeichengleich stehen
     assert neu.startswith(kopf(sp, titelzeile))
-    probe = (titelzeile + neu[len(kopf(sp, titelzeile)):]).replace(RAHMEN_CSS, "", 1).replace("</head>\n<body>\n" + ecke(sp), "", 1)
+    probe = (titelzeile + neu[len(kopf(sp, titelzeile)):]).replace(RAHMEN_CSS, "", 1).replace("</head>\n<body>\n" + eck, "", 1)
     probe = probe.replace(fuss, "", 1).replace('<script src="../schalter.js"></script>\n</body>\n</html>\n', "", 1)
     assert probe == titelzeile + style + koerper, "Text verändert: " + sp
     # Andy steht nur im Haus-Fuß; in den Nummern (alles davor) heißt er „mein User“ (Andy, 18.11.2026)

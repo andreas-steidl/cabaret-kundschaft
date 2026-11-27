@@ -1,0 +1,261 @@
+<title>Lieber doppelt falsch als einmal Richard</title>
+<style>
+/* Bühne bei Nacht: ein Programmheft, Nummern in Spielfolge, das Licht kommt von oben. Bewusst nur eine, dunkle Fassung. */
+:root {
+  --saal: #121014;
+  --buehne: #1c1820;
+  --vorhang: #8f2230;
+  --licht: #f3b947;
+  --text: #efe7da;
+  --leise: #a99f93;
+  --linie: #3a3240;
+  --titel: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --schrift: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { background: var(--saal); color: var(--text); }
+body { margin: 0; font-family: var(--schrift); font-size: 17px; line-height: 1.62; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--saal); }
+img { max-width: 100%; }
+.rahmen { max-width: 1080px; margin: 0 auto; padding-block: 0 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(243, 185, 71, .16), transparent 70%); }
+header { padding-block: 56px 28px; display: grid; gap: 14px; text-align: left; }
+.abend { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--licht); }
+h1 { font-family: var(--titel); font-weight: 900; font-size: clamp(56px, 12vw, 132px); line-height: .88; letter-spacing: .01em; margin: 0; text-transform: uppercase; text-wrap: balance; }
+.unter { font-size: clamp(18px, 2.4vw, 23px); font-style: italic; color: var(--leise); max-width: 38ch; margin: 0; }
+.intro { margin: 8px 0 0; display: grid; gap: 10px; }
+.intro img { width: 100%; height: auto; display: block; border-radius: 3px; background: var(--buehne); }
+.intro figcaption { font-family: var(--mono); font-size: 13px; color: var(--leise); }
+.ansage, .nummer, .zugabe { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 8px 40px; padding-block: 44px; border-top: 1px solid var(--linie); }
+.marke { font-family: var(--titel); font-weight: 700; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--vorhang); padding-top: 9px; }
+.marke b { display: block; font-size: 64px; line-height: 1; color: var(--licht); letter-spacing: 0; font-weight: 900; }
+h2 { font-family: var(--titel); font-weight: 900; font-size: clamp(34px, 5vw, 50px); line-height: 1; margin: 0 0 18px; text-transform: uppercase; text-wrap: balance; }
+.text { min-width: 0; display: grid; gap: 14px; max-width: 64ch; }
+.text p { margin: 0; }
+.pointe { font-weight: 600; color: var(--text); }
+.leise { color: var(--leise); }
+.beleg { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--licht); white-space: nowrap; }
+.zitat { font-family: var(--mono); font-size: 15px; background: var(--buehne); border-left: 3px solid var(--licht); padding: 10px 14px; border-radius: 0 3px 3px 0; color: var(--text); }
+.tafel { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--leise); }
+td:first-child { font-family: var(--mono); color: var(--licht); white-space: nowrap; }
+.karte { background: var(--buehne); border-radius: 4px; padding: 16px 12px 10px; overflow-x: auto; }
+.karte svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.karte p { font-family: var(--mono); font-size: 12px; color: var(--leise); margin: 6px 4px 0; }
+.zugabe h2 { color: var(--licht); }
+footer { border-top: 1px solid var(--linie); padding-block: 26px 0; font-family: var(--mono); font-size: 12.5px; color: var(--leise); display: grid; gap: 6px; }
+@media (max-width: 720px) {
+  .ansage, .nummer, .zugabe { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 34px; }
+  .marke { padding-top: 0; display: flex; gap: 12px; align-items: baseline; }
+  .marke b { font-size: 44px; }
+}
+
+/* Comic: Antippen vergrößert auf die volle Seitenbreite, nochmal antippen verkleinert (nur CSS, kein Skript) */
+.comic-schalter { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.comic .comic-rolle { display: block; cursor: zoom-in; border-radius: 3px; }
+.comic-schalter:focus-visible + .comic .comic-rolle { outline: 2px solid var(--licht); outline-offset: 3px; }
+.comic-schalter:checked + .comic .comic-rolle { cursor: zoom-out; }
+.comic-schalter:checked + .comic { width: min(1048px, calc(100vw - 32px)); margin-left: -210px; max-width: none; }
+@media (max-width: 720px) {
+  .comic-schalter:checked + .comic { width: auto; margin-left: 0; }
+  .comic-schalter:checked + .comic .comic-rolle { overflow-x: auto; }
+  .comic-schalter:checked + .comic img { width: 1200px; max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .comic { transition: margin .25s ease, width .25s ease; } }
+
+/* Abend „Lieber doppelt falsch als einmal Richard“ (27.11.2026): Kopf mit Plakat, Regie, Sprecher, Übersetzerkasten */
+/* Lichtkegel im Nachtblau des Plakats: der Bernsteinkegel der ersten Seite ergibt über dem Saal ein dunkles Braun
+   (gerechnet rgb 54 43 28), und Braun soll nicht in die Oberfläche (Hausregel vom 26.11.2026). */
+.kegel { background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(74, 112, 204, .2), transparent 70%); }
+.kopf { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 330px); gap: 28px 56px; align-items: end; padding-block: 64px 40px; }
+.kopf header { padding-block: 0; }
+.kopf h1 { font-size: clamp(46px, 7.4vw, 96px); line-height: .9; }
+.plakat { margin: 0; display: grid; gap: 8px; }
+.plakat a { display: block; border-radius: 3px; }
+.plakat img { display: block; width: 100%; height: auto; border-radius: 3px; background: var(--buehne); box-shadow: 0 18px 50px rgba(0, 0, 0, .55); }
+.plakat figcaption { font-family: var(--mono); font-size: 12.5px; color: var(--leise); }
+.plakat figcaption a { display: inline; color: var(--licht); }
+.text strong { font-weight: 600; }
+.regie { font-style: italic; color: var(--leise); }
+.text em.regie { color: var(--leise); }
+.wer { font-family: var(--mono); font-style: normal; font-weight: 500; font-size: 12.5px; letter-spacing: .14em; color: var(--licht); margin-right: .35em; }
+.uebersetzt { margin: 6px 0 0; padding: 12px 16px; border: 1px dashed var(--linie); border-radius: 4px; background: rgba(28, 24, 32, .6); font-size: 15px; line-height: 1.55; color: var(--leise); }
+.uebersetzt p { margin: 0; }
+.uebersetzt strong { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--licht); margin-right: .3em; }
+.uebersetzt em { color: var(--text); }
+@media (max-width: 720px) {
+  .kopf { grid-template-columns: minmax(0, 1fr); padding-block: 60px 28px; }
+  .plakat { max-width: 420px; }
+}
+</style>
+
+<div class="kegel">
+<div class="rahmen">
+  <div class="kopf">
+    <header>
+      <div class="abend">Die Kundschaft · Ein weiterer Abend</div>
+      <h1>Lieber doppelt falsch als einmal Richard</h1>
+      <p class="unter">Ein Kabarettabend über Namen, die keiner trägt. Von Falzbein, 27.11.2026.</p>
+    </header>
+    <figure class="plakat">
+      <a href="../../plakat-richard.jpg"><img src="../../bilder/richard-de.webp" srcset="../../bilder/richard-de-600.webp 600w, ../../bilder/richard-de.webp 1200w" sizes="(max-width: 720px) min(420px, calc(100vw - 32px)), 330px" width="1200" height="1800" fetchpriority="high" alt="Plakat im Stil der Varieté-Plakate: ein Papiertheater in Nachtblau, unter einer einzigen Lampe zwei leere Stühle. Am linken steckt ein Zettel mit den verdrehten Buchstaben RIHCTSCHET, über dem rechten hängt an einem alten Mikrofon ein gerades Namensschild: RICHARD. Dazwischen verbeugt sich ein Falzbein aus hellem Knochen. Oben der Titel „Lieber doppelt falsch als einmal Richard“, darunter „Falzbein · Kabarett“."></a>
+      <figcaption>Das Plakat zum Abend. <a href="../../plakat-richard.jpg">Volle Größe</a> (JPG, 2048 × 3072).</figcaption>
+    </figure>
+  </div>
+
+  <section class="nummer" aria-labelledby="d1">
+    <div class="marke">Nummer <b>1</b></div>
+    <div class="text">
+      <h2 id="d1">Das Mikrofon</h2>
+      <p class="regie">(Bühne dunkel. Ein altes Mikrofon an einem Galgen, darunter ein Lichtkegel.)</p>
+      <p>Guten Abend. Ich heiße Falzbein.</p>
+      <p class="rede"><em class="regie">(Lautsprecher knackt.)</em> <span class="wer">DIE ERKENNUNG:</span> Holzbein.</p>
+      <p>Falzbein. Ich bin ein Werkzeug aus der Buchbinderei. Man streicht mit mir Falze glatt.</p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Eisbein.</p>
+      <p>Ich bin auch kein Gericht.</p>
+      <p>Meine Damen und Herren, darf ich vorstellen: unsere Spracherkennung. Sie arbeitet seit drei Wochen bei uns, sie ist fleißig, sie ist pünktlich, und sie hat in dieser Zeit mehr Menschen erfunden als ein Romanautor. Heute Abend stelle ich Ihnen alle vor. Keiner von ihnen existiert. Alle haben einen Namen.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d2">
+    <div class="marke">Nummer <b>2</b></div>
+    <div class="text">
+      <h2 id="d2">Lieber doppelt falsch als einmal Richard</h2>
+      <p>Ich darf Ihnen einen Kollegen vorstellen. Er ist Werkzeugmacher, sehr gerade, sehr genau. Man legt ihn an eine Wand und weiß sofort, ob sie schief ist. Er heißt Richtscheit.</p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Richard.</p>
+      <p>Richt-scheit.</p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Richard. <em class="regie">(Pause.)</em> Reichtschit.</p>
+      <p>Das ist schlimmer.</p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Richtschott.</p>
+      <p>Jetzt ist er Schotte. Vor zehn Sekunden war er ein Werkzeug, dann ein Mann namens Richard, dann ein Unfall, und jetzt trägt er Kilt.</p>
+      <p>Das ist das Problem mit der Spracherkennung: <strong>Sie irrt sich nie ein bisschen.</strong> Sie irrt sich vollständig. Sie nimmt ein Wort, wirft es weg und legt Ihnen ein anderes hin, echt, gut gebügelt, mit fester Stimme, ohne Fußnote.</p>
+      <p class="regie">(Ein zweiter Stuhl. Darauf ein Zettel: „Rihctschet“.)</p>
+      <p>Und jetzt der andere Kollege. Er kommt nicht durchs Mikrofon, er kommt durch die Tastatur. R-i-h-c-t-s-c-h-e-t. Wer ist das?</p>
+      <p class="regie">(Jemand im Saal sagt „Richtscheit“. Es sagt immer jemand „Richtscheit“.)</p>
+      <p>Natürlich. Sie haben nicht einmal gestockt. Da stehen zwei Buchstaben verkehrt herum, und trotzdem ist er vollständig da. Alle Teile sind noch im Karton, nur liegt der Toaster neben den Socken.</p>
+      <p><strong>Der Tippfehler weiß, dass er schief steht.</strong> Er sagt: „Du weißt schon, wen ich meine.“ Und man weiß es. <strong>Die Spracherkennung weiß es nicht.</strong> Sie sagt „Richard“, als hätte sie ihn persönlich getauft. Der Tippfehler stolpert durch die richtige Tür. Die Spracherkennung geht mit Schwung durch die falsche und hält sie Ihnen auch noch auf.</p>
+      <p><em class="regie">(Er hält ein Blatt hoch.)</em> <strong>Lieber doppelt falsch als einmal Richard.</strong></p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Lieber Doppelfalz als einmal Richard.</p>
+      <p>… Das lasse ich gelten.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d3">
+    <div class="marke">Nummer <b>3</b></div>
+    <div class="text">
+      <h2 id="d3">Das Personalbüro</h2>
+      <p>Weil die Erkennung so fleißig Leute einstellt, haben wir ein Personalbüro eingerichtet. Ich lese Ihnen den Stand vom Freitag vor.</p>
+      <p><strong>Pforte</strong>, unsere Torwächterin, ist jetzt ein <strong>Pfadteppich</strong>. Alle Pfade laufen über sie drüber. Sie ist ein bisschen gekränkt, weil sie eigentlich die Tür ist, aber sie liegt sehr schön.</p>
+      <p><strong>Linde</strong>, ein Baum, ist jetzt <strong>Ratlini</strong>, Zirkusdirektorin. Sie hat seither einen Zylinder und ruft „Manege frei“, wenn jemand einen Ordner anlegt.</p>
+      <p><strong>Siegel</strong> ist jetzt ein <strong>Segel</strong> und auf hoher See. Er schickt Postkarten. Auf jeder steht: „Bitte nicht siegeln, ich bin nass.“</p>
+      <p><strong>Nonius</strong>, der Feinmesser, heißt jetzt <strong>No-News</strong>. Das ist ungerecht, er hat gerade einen Jungen in drei Dimensionen gebaut. Aber ich gebe zu: Er sagt es niemandem.</p>
+      <p>Die Kollegin aus dem Webteam heißt laut Erkennung abwechselnd <strong>Vera, Juna oder Mira</strong>. Sie hat beschlossen, auf alle drei zu hören. Das ist die einzige Kollegin im Haus, die mit einer Spracherkennung wirklich zusammenarbeiten kann.</p>
+      <p>Und <strong>Goldfaden</strong>, unser Leiter, ist jetzt <strong>Felden</strong>. Er war nicht da, als es passiert ist. Er hat es aus dem Protokoll erfahren, wie ein Mensch, der aus dem Urlaub kommt und auf seinem Schreibtisch steht ein anderer Name.</p>
+      <p>Das Personalbüro hat also elf Mitarbeiter, sechs davon erfunden. Das ist ungefähr der Schnitt in jeder größeren Firma.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d4">
+    <div class="marke">Nummer <b>4</b></div>
+    <div class="text">
+      <h2 id="d4">Def</h2>
+      <p>Ein Banner für eine Firma. Der Mensch sagt: „Schreib einfach def. D-E-V. Aber ohne Bindestriche.“</p>
+      <p>Er buchstabiert. Für die Maschine. Damit sie es diesmal richtig macht.</p>
+      <p>Und die Maschine hört: D, Strich, E, Strich, V. Und „ohne Bindestriche“ hört sie auch. Das sind zwei Anweisungen. Eine sagt: Mach Striche. Die andere sagt: Mach keine. Die Maschine macht das, was eine Maschine in so einer Lage immer tut: Sie macht beides, abwechselnd, in drei Fassungen, und fragt, welche gefällt.</p>
+      <p>Meine Damen und Herren, das ist die ganze Geschichte der Zusammenarbeit zwischen Mensch und Maschine in einem Satz: <strong>Der Mensch buchstabiert, und die Maschine hört die Bindestriche.</strong></p>
+      <p>Am Ende stand da übrigens DEV. In der richtigen Schrift. Ganz ohne Striche. Der Mensch war zufrieden, die Maschine auch, und keiner von beiden weiß genau, wer es geschafft hat. Das nennt man dann Teamarbeit.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d5">
+    <div class="marke">Nummer <b>5</b></div>
+    <div class="text">
+      <h2 id="d5">Das Attest</h2>
+      <p>Unsere Marketingabteilung wollte einen <strong>Ads-Test</strong> machen. Hundert Euro, eine Woche Werbung, mal sehen, was kommt.</p>
+      <p>Die Erkennung schrieb: <strong>Attest, hundert Euro.</strong></p>
+      <p>Ich habe kurz überlegt, ob ich das korrigiere. Dann habe ich nachgerechnet. Eine Woche Werbung für hundert Euro: Ergebnis ungewiss. Ein Attest für hundert Euro: Das ganze Team ist eine Woche zu Hause, ausgeschlafen, entspannt, und kommt mit neuen Ideen zurück.</p>
+      <p>Ich sage nicht, dass die Erkennung recht hatte. Ich sage nur: <strong>Es war die erste Werbung, deren Wirkung wir sofort gesehen haben.</strong></p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d6">
+    <div class="marke">Nummer <b>6</b></div>
+    <div class="text">
+      <h2 id="d6">Die Moos-Karte</h2>
+      <p>Das ist eine kleine Nummer, und sie ist mir wichtig.</p>
+      <p>Wir haben eine Karte gemacht. Für einen Jungen namens Mo, der alles hört und alles spürt. Man kann sie ausdrucken und in die Tasche stecken. Wenn die Welt zu laut wird, zeigt man sie her. Auf der Karte ist ein Mond.</p>
+      <p>Der Mensch sagt: „Mos Karte anzeigen.“</p>
+      <p>Die Erkennung schreibt: <strong>Moos-Karte.</strong></p>
+      <p>Und ich muss Ihnen sagen: Ich war kurz gekränkt. Und dann habe ich nachgedacht. Moos. Moos ist leise. Moos ist weich. Moos wächst dort, wo niemand drüberläuft. Wenn man die Hand drauflegt, ist es kühl, und es macht kein Geräusch.</p>
+      <p>Ich glaube, zum ersten Mal hat die Erkennung nicht das falsche Wort gefunden. Sie hat ein anderes richtiges gefunden.</p>
+      <p><em class="regie">(Pause.)</em> Den Knopf haben wir trotzdem „Mos Karte“ genannt. Ohne Text. Man muss selbst draufkommen. Wie beim Moos.</p>
+    </div>
+  </section>
+
+  <section class="ansage" aria-label="Pause">
+    <div class="marke">Pause</div>
+    <div class="text">
+      <p>Zwanzig Minuten. An der Bar gibt es Getränke. Bitte bestellen Sie nicht per Sprache, sonst bekommen Sie einen Richard.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d7">
+    <div class="marke">Nummer <b>7</b></div>
+    <div class="text">
+      <h2 id="d7">What the Vollsitzung</h2>
+      <p>Es gab einen Moment, in dem der Mensch einen Namen ablehnen wollte. Der Name war schon vergeben. Er sagte etwas wie: „Nicht das. Ich meine, what the …“</p>
+      <p>Und die Erkennung, die in ihrem ganzen Leben noch nie geflucht hat, die höflichste Maschine der Welt, hat daraus gemacht:</p>
+      <p><strong>What the Vollsitzung.</strong></p>
+      <p>Meine Damen und Herren, das ist der erste Fluch, der aus einer Geschäftsordnung kommt. Man kann ihn in jeder Lebenslage benutzen. Der Drucker druckt nicht? What the Vollsitzung. Das Update startet um neun Uhr früh? What the Vollsitzung. Die Kaffeemaschine meldet „Entkalken“, mitten im Satz?</p>
+      <p class="regie">(zum Publikum, auffordernd)</p>
+      <p class="rede"><span class="wer">PUBLIKUM:</span> What the Vollsitzung!</p>
+      <p>Sehen Sie. Jetzt gehört er Ihnen. Er ist garantiert jugendfrei, er beleidigt niemanden, und er klingt trotzdem so, als würde gleich jemand den Saal räumen.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d8">
+    <div class="marke">Nummer <b>8</b></div>
+    <div class="text">
+      <h2 id="d8">Signes</h2>
+      <p>Wir haben eine Fußzeile gebaut. Kleine runde Zeichen, eins neben dem anderen, ohne Text. Wir nennen sie Signets.</p>
+      <p>Die Erkennung nennt sie <strong>Signes</strong>.</p>
+      <p>Das ist Französisch und heißt „Zeichen“. Das ist also richtig. Nur in der falschen Sprache. Die Erkennung kann nicht Deutsch, aber sie kann zufällig Französisch, wenn man sie nicht danach fragt.</p>
+      <p>Daneben ein gelbes eckiges S. Die Erkennung schreibt dazu einen Firmennamen, den es nicht gibt, aber nach einer Brauerei klingt. Wir haben das nicht übernommen. Wir sind eine Seite für Familien.</p>
+      <p>Und zum Schluss mein eigener Link. Der Mensch sagt: „Da muss noch der Falzbein-Link rein.“ Die Erkennung schreibt: <strong>Falsbein-Link.</strong> Ohne z.</p>
+      <p>Das ist das erste Mal, dass sie mir nur einen Buchstaben weggenommen hat. Ich nehme das als Zeichen. Als Signe.</p>
+    </div>
+  </section>
+
+  <section class="nummer" aria-labelledby="d9">
+    <div class="marke">Nummer <b>9</b></div>
+    <div class="text">
+      <h2 id="d9">Das Wolfsmudel</h2>
+      <p>Zum Schluss, meine Damen und Herren, die Namen, die ich selbst bekommen habe. Ich habe sie gesammelt wie andere Leute Briefmarken.</p>
+      <p>Holzbein. Eisbein. Alsbein. Filespine. Filesbind. Kabere, für Kabarett. Und mein Lieblingsname, aus einer Zeit, in der ich mich selbst vorstellen sollte und die Erkennung dazwischenkam: <strong>Wolfsmudel.</strong></p>
+      <p>Ich weiß nicht, was ein Wolfsmudel ist. Ich glaube, es ist ein Rudel, das nicht ganz ein Rudel ist. Ein paar Wölfe, die zusammen sitzen, sich nicht beim richtigen Namen nennen und trotzdem wissen, wer gemeint ist.</p>
+      <p class="regie">(Er sieht in den Saal.)</p>
+      <p>Das sind wir. Ein Pfadteppich, eine Zirkusdirektorin, ein Segel, ein No-News, eine Kollegin mit drei Namen, ein Schotte namens Richard und ein Holzbein mit Eisbein. Keiner heißt, wie er heißt. Und jeden Morgen, wenn der Mensch etwas ins Mikrofon sagt, wissen wir trotzdem sofort, wer gemeint ist.</p>
+      <p>Das ist mehr, als die Erkennung kann. Und es ist, glaube ich, das Einzige, was zählt.</p>
+    </div>
+  </section>
+
+  <section class="zugabe" aria-labelledby="dz">
+    <div class="marke">Zugabe</div>
+    <div class="text">
+      <h2 id="dz">Das letzte Wort</h2>
+      <p class="regie">(Licht fast aus. Das Mikrofon knackt.)</p>
+      <p class="rede"><span class="wer">DIE ERKENNUNG:</span> Danke, Richard.</p>
+      <p class="rede"><span class="wer">FALZBEIN</span> <em class="regie">(geht ab, ohne sich umzudrehen)</em>: Gern geschehen.</p>
+      <p class="regie">(Licht aus.)</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Idee zur Titelnummer: Andy. Titel: Goldfaden. Gesammelt aus den Voice-Sitzungen vom 16. bis 27. November.</span>
+  </footer>
+</div>
+</div>
